@@ -1,21 +1,31 @@
 <div>
-    <h1>Pizzas works!</h1>
-    <ul>
-        <li *ngFor='let pizza of pizzas '>
-            {{pizza.Name}}|| amount is {{pizza.Price}}
-        </li>
-    </ul>
-    <h1>Toppings works!</h1>
-    <ul>
-        <li *ngFor='let topping of toppings '>
-            {{topping.Name}}|| price is {{topping.Price}}
-        </li>
-    </ul>
-    <h1>Discounts works!</h1>
-    <ul>
-        <li *ngFor='let discount of discounts '>
-            {{discount.Name}}||amount is {{discount.Amount}}
-        </li>
-    </ul>
-    
+  <style>
+      .selected{
+          background-color: red !important;
+      }
+  </style>
+  <h1>Toppings works!</h1>
+  <mat-list>
+    <mat-list-item [ngClass]="{'selected':toppings[i].Name.toLowerCase() === selectedTopping}" style="background-color: aqua;margin: 2%;"  *ngFor='let topping of toppings let i=index' (click)='setPickedToppings(topping)'> {{topping.Name}}|| amount is {{topping.Price}} </mat-list-item>
+  </mat-list>
+  <h1>$ {{toppingTotal}}</h1>
+  <h1>Pizzas works!</h1>
+  <mat-list>
+    <mat-list-item style="background-color: aqua;margin: 2%;" *ngFor='let pizza of pizzas ' (click)='setPickedPizza(pizza)'> {{pizza.Name}}|| amount is {{pizza.Price}} </mat-list-item>
+  </mat-list>
+
+  <div>
+      <p *ngIf="error">{{error}}</p>
+    <input matInput type="text" [(ngModel)]="discountCode">
+    <button matButton (click)="applyDiscount()">Apply Code</button>
+
+  </div>
+  
+  <input matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
+
+  <h1>$ {{total}}</h1>
+
+  <button matButton (click)="continueToShipping()">Buy! Buy Pizza</button>
+
+
 </div>
