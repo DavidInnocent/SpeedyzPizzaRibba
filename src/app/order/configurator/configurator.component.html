@@ -1,0 +1,21 @@
+<div>
+    <h1>Pizzas works!</h1>
+    <ul>
+        <li *ngFor='let pizza of pizzas '>
+            {{pizza.Name}}|| amount is {{pizza.Price}}
+        </li>
+    </ul>
+    <h1>Toppings works!</h1>
+    <ul>
+        <li *ngFor='let topping of toppings '>
+            {{topping.Name}}|| price is {{topping.Price}}
+        </li>
+    </ul>
+    <h1>Discounts works!</h1>
+    <ul>
+        <li *ngFor='let discount of discounts '>
+            {{discount.Name}}||amount is {{discount.Amount}}
+        </li>
+    </ul>
+    
+</div>
