@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class ConfiguratorService {
   discounts: Observable<any[]>;
 
   constructor(firestore: AngularFirestore) {
-    this.toppings = firestore.collection('Toppings').valueChanges();
-    this.pizzas = firestore.collection('Pizzas').valueChanges();
-    this.discounts = firestore.collection('DiscountCodes').valueChanges();
+    this.toppings = firestore.collection(environment.TOPPINGS).valueChanges();
+    this.pizzas = firestore.collection(environment.PIZZAS).valueChanges();
+    this.discounts = firestore.collection(environment.DISCOUNTS).valueChanges();
   }
 }

@@ -9,13 +9,14 @@ import { OrderSuccessComponent } from './order/order-success/order-success.compo
 import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
-  {path:"sign_up",component:SignUpComponent},
-  {path:"log_in",component:LoginComponent},
-  {path:"configurator",component:ConfiguratorComponent},
-  {path:"order_history",component:OrderHistoryComponent},
-  {path:"order_details",component:OrderDetailsComponent},
-  {path:"order_success",component:OrderSuccessComponent},
-  {path:"error",component:ErrorComponent},
+  {path:'',component:LoginComponent},
+  {path:'sign_up',component:SignUpComponent},
+  {path:'log_in',component:LoginComponent},
+  {path:'configurator',component:ConfiguratorComponent},
+  {path:'order_history',component:OrderHistoryComponent},
+  {path:'order_details',component:OrderDetailsComponent},
+  {path:'order_success',component:OrderSuccessComponent},
+  {path:'error',component:ErrorComponent},
 ];
 
 @NgModule({
