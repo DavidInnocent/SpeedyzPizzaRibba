@@ -25,13 +25,10 @@ export class ConfiguratorComponent implements OnInit {
   constructor(configurator:ConfiguratorService) {
     configurator.pizzas.subscribe(pizzasReturned=>this.pizzas=pizzasReturned);
     configurator.toppings.subscribe(toppingsReturned=>this.toppings=toppingsReturned);
-    configurator.discounts.subscribe(discountsReturned=>this.discounts=discountsReturned);
-  
-    
+    configurator.discounts.subscribe(discountsReturned=>this.discounts=discountsReturned);    
    }
 
   ngOnInit(): void {
-    this.pizzas.forEach(pizza=>console.log(pizza.Name))
     }
 
 }

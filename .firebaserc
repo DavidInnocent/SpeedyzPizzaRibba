@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "test-6bea2": {
+      "hosting": {
+        "PrototypPizza": [
+          "test-6bea2"
+        ]
+      }
+    }
+  }
+}

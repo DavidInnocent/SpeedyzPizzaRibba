@@ -13,6 +13,6 @@ export class ConfiguratorService {
   constructor(firestore: AngularFirestore) {
     this.toppings = firestore.collection('Toppings').valueChanges();
     this.pizzas = firestore.collection('Pizzas').valueChanges();
-    this.discounts = firestore.collection('Discounts').valueChanges();
+    this.discounts = firestore.collection('DiscountCodes').valueChanges();
   }
 }
