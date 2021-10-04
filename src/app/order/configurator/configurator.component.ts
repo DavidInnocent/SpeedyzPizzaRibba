@@ -30,15 +30,19 @@ export class ConfiguratorComponent implements OnInit {
   discountApplied=0;
   pickedPizzaAmount=0;
   toppingTotal=0;
-  selectedTopping: string;
+  selectedTopping!: string;
+  selectedToppingIndex!: number;
+  
+  configuratorService: ConfiguratorService
 
-  constructor(configurator: ConfiguratorService) {
-    configurator.pizzas.subscribe(pizzasReturned => this.pizzas = pizzasReturned);
-    configurator.toppings.subscribe(toppingsReturned => this.toppings = toppingsReturned);
-    configurator.discounts.subscribe(discountsReturned => this.discounts = discountsReturned);
+  constructor(configuratorService: ConfiguratorService) {
+    this.configuratorService=configuratorService;
   }
 
   ngOnInit(): void {
+    this.configuratorService.pizzas.subscribe((pizzasReturned: Pizza[]) => this.pizzas = pizzasReturned);
+    this.configuratorService.toppings.subscribe((toppingsReturned:Topping[]) => this.toppings = toppingsReturned);
+    this.configuratorService.discounts.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
   }
 
   continueToShipping() {
@@ -52,16 +56,18 @@ export class ConfiguratorComponent implements OnInit {
 
   }
 
-  setPickedToppings(topping: Topping) {
+  setPickedToppings(topping: Topping,selectedIndex:number) {
     let toppingToBeRemoved=this.pickedToppings.filter(toppingInList=>topping.Name===toppingInList.Name)
     
     if(toppingToBeRemoved.length>0)
     {
       delete this.pickedToppings[this.pickedToppings.indexOf(toppingToBeRemoved[0])];
       this.selectedTopping=topping.Name.toLowerCase();
+      this.selectedToppingIndex=selectedIndex;
       this.calculateTotal();
       return;
     }
+    this.selectedToppingIndex=selectedIndex;
     this.pickedToppings.push(topping);
     this.calculateTotal();
     

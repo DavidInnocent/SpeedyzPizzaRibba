@@ -6,7 +6,7 @@
   </style>
   <h1>Toppings works!</h1>
   <mat-list>
-    <mat-list-item [ngClass]="{'selected':toppings[i].Name.toLowerCase() === selectedTopping}" style="background-color: aqua;margin: 2%;"  *ngFor='let topping of toppings let i=index' (click)='setPickedToppings(topping)'> {{topping.Name}}|| amount is {{topping.Price}} </mat-list-item>
+    <mat-list-item [ngClass]="{'selected': pickedToppings.indexOf(topping)!==-1}" style="background-color: aqua;margin: 2%;"  *ngFor='let topping of toppings let i=index' (click)='setPickedToppings(topping,i)'> {{topping.Name}}|| amount is {{topping.Price}} </mat-list-item>
   </mat-list>
   <h1>$ {{toppingTotal}}</h1>
   <h1>Pizzas works!</h1>
