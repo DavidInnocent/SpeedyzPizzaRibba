@@ -1,1 +1,70 @@
 <p>order-details works!</p>
+
+<style>
+    .orderDetail {
+      border-bottom: 1px dashed #999;
+      border-top: 1px dashed #999;
+      padding: 5%;
+    }
+  
+  </style>
+  <mat-card>
+    <div>
+      <h1>Almost done!</h1>
+    </div>
+    <div>
+        <ul>
+            <li>
+                <div>
+                    <h3>Order details</h3>
+                    <div>
+              
+                      <h5>TOPPINGS</h5>
+                      <p>{{orderToppings}}</p>
+                      <p>QTY: {{order.Quantity}}</p>
+                    </div>
+              
+                    <div class="orderDetail">
+                      <h5>Delivery</h5>
+                      <p>Free delivery within 1hour or you don't have to pay.</p>
+                    </div>
+                    <div>
+                      <div>
+              
+                        <input matInput type="text" [(ngModel)]="discountCode">
+                        <button matButton (click)="applyDiscount()">Apply Code</button>
+                      </div>
+              
+                    </div>
+                    <div>
+                        <p>Total price</p>
+                        <p class="commonColor">${{order.Total}}</p>
+                    </div>
+              
+              
+                  </div>
+            </li>
+            <li>
+                <div>
+                    <h3>Shipping information</h3>
+                    <input matInput type="text" placeholder='Street name and number' [(ngModel)]="discountCode">
+                    <div>
+                        <input matInput type="text" placeholder='City' [(ngModel)]="discountCode">
+                        <input matInput type="text" placeholder='Postal Code' [(ngModel)]="discountCode">
+                    </div>
+                    <input matInput type="text" placeholder='Country' [(ngModel)]="discountCode">
+                    <div>
+                        <h3>Payment details</h3>
+                        <p>Cash on delivery</p>
+                    </div>
+
+                    <button matButton (click)="finishOrderingPizza()">Finish Order</button>
+                
+                </div>
+            </li>
+        </ul>
+      
+  
+    </div>
+  </mat-card>
+  

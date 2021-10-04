@@ -5,5 +5,6 @@ export interface Order {
     Toppings:Array<Topping>,
     PizzaType:Pizza,
     DiscountApplied:boolean,
-    Quantity:number
+    Quantity:number,
+    Total:number
 }

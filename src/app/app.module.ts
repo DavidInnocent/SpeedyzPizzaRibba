@@ -28,7 +28,6 @@ import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -7,6 +7,7 @@ import { Order } from 'src/app/models/order';
 export class DataSharingService {
 
   private order!:Order
+  private discountAdded=false;
   constructor() { }
   getOrder():Order{
     return this.order;
@@ -14,5 +15,12 @@ export class DataSharingService {
 
   setOrder(order:Order){
     this.order=order;
+  }
+  getDiscount():boolean{
+    return this.discountAdded;
+  }
+
+  setDiscount(discountValue:boolean){
+    this.discountAdded=discountValue;
   }
 }

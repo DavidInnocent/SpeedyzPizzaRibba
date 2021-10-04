@@ -26,8 +26,8 @@ export class ConfiguratorComponent implements OnInit {
   discountedPizza = false;
 
   pickedOrder!: Order;
-  discountCode = '';
-  error = '';
+  discountCode!:string;
+  error!:string;
   total = 0;
   discountApplied=0;
   pickedPizzaAmount=0;
@@ -52,16 +52,6 @@ export class ConfiguratorComponent implements OnInit {
     this.configuratorService.discounts.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
   }
 
-  continueToShipping() {
-    this.pickedOrder = {
-      PizzaType: this.pickedPizza,
-      Quantity: this.quantity,
-      DiscountApplied: this.discountedPizza,
-      Toppings: this.pickedToppings
-    }
-    this.router.navigateByUrl('/order_success');
-
-  }
 
   setPickedToppings(topping: Topping) {
     let toppingToBeRemoved=this.pickedToppings.filter(toppingInList=>topping.Name===toppingInList.Name)
@@ -93,7 +83,7 @@ export class ConfiguratorComponent implements OnInit {
       return;
     }
     this.discountApplied=discountToBeApplied[0].Amount;
-    console.log(this.discountApplied)
+    this.dataSharingService.setDiscount(true)
     this.calculateTotal();
   }
 
@@ -110,6 +100,20 @@ export class ConfiguratorComponent implements OnInit {
   }
   onSearchChange($event:any){
     this.calculateTotal();
+  }
+
+  
+  continueToShipping() {
+    this.pickedOrder = {
+      PizzaType: this.pickedPizza,
+      Quantity: this.quantity,
+      DiscountApplied: this.discountedPizza,
+      Toppings: this.pickedToppings,
+      Total:this.total
+    }
+    this.dataSharingService.setOrder(this.pickedOrder);
+    this.router.navigateByUrl('/order_details');
+
   }
 
 }
