@@ -5,6 +5,7 @@ import { Order } from 'src/app/models/order';
 import { Pizza } from 'src/app/models/pizza';
 import { Topping } from 'src/app/models/topping';
 import { ConfiguratorService } from './configurator.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-configurator',
@@ -34,9 +35,11 @@ export class ConfiguratorComponent implements OnInit {
   selectedToppingIndex!: number;
   
   configuratorService: ConfiguratorService
+  router!: Router;
 
-  constructor(configuratorService: ConfiguratorService) {
+  constructor(configuratorService: ConfiguratorService,router: Router) {
     this.configuratorService=configuratorService;
+    this.router=router;
   }
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class ConfiguratorComponent implements OnInit {
       DiscountApplied: this.discountedPizza,
       Toppings: this.pickedToppings
     }
-
+    this.router.navigateByUrl('/order_success');
 
   }
 
