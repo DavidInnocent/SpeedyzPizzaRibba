@@ -6,6 +6,7 @@ import { Pizza } from 'src/app/models/pizza';
 import { Topping } from 'src/app/models/topping';
 import { ConfiguratorService } from './configurator.service';
 import { Router } from '@angular/router';
+import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 
 @Component({
   selector: 'app-configurator',
@@ -36,10 +37,13 @@ export class ConfiguratorComponent implements OnInit {
   
   configuratorService: ConfiguratorService
   router!: Router;
+  dataSharingService: DataSharingService;
+  selectedPizzaIndex!: number;
 
-  constructor(configuratorService: ConfiguratorService,router: Router) {
+  constructor(configuratorService: ConfiguratorService,router: Router,dataSharingService:DataSharingService) {
     this.configuratorService=configuratorService;
     this.router=router;
+    this.dataSharingService=dataSharingService;
   }
 
   ngOnInit(): void {
@@ -59,25 +63,26 @@ export class ConfiguratorComponent implements OnInit {
 
   }
 
-  setPickedToppings(topping: Topping,selectedIndex:number) {
+  setPickedToppings(topping: Topping) {
     let toppingToBeRemoved=this.pickedToppings.filter(toppingInList=>topping.Name===toppingInList.Name)
     
     if(toppingToBeRemoved.length>0)
     {
       delete this.pickedToppings[this.pickedToppings.indexOf(toppingToBeRemoved[0])];
       this.selectedTopping=topping.Name.toLowerCase();
-      this.selectedToppingIndex=selectedIndex;
+     
       this.calculateTotal();
       return;
     }
-    this.selectedToppingIndex=selectedIndex;
+   
     this.pickedToppings.push(topping);
     this.calculateTotal();
     
   }
-  setPickedPizza(pizza: Pizza) {
+  setPickedPizza(pizza: Pizza,selectedPizzaIndex:number) {
     this.pickedPizza = pizza;
     this.pickedPizzaAmount=pizza.Price
+    this.selectedPizzaIndex=selectedPizzaIndex
     this.calculateTotal();
   }
   applyDiscount() {
