@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import { AuthService } from './auth/services/auth.service';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,   
     MatCardModule, 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

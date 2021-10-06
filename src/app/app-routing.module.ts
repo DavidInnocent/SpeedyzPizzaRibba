@@ -7,15 +7,18 @@ import { OrderDetailsComponent } from './order/order-details/order-details.compo
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { OrderSuccessComponent } from './order/order-success/order-success.component';
 import { ErrorComponent } from './shared/error/error.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'sign_up',component:SignUpComponent},
   {path:'log_in',component:LoginComponent},
-  {path:'configurator',component:ConfiguratorComponent},
-  {path:'order_history',component:OrderHistoryComponent},
-  {path:'order_details',component:OrderDetailsComponent},
-  {path:'order_success',component:OrderSuccessComponent},
+  {path:'configurator',component:ConfiguratorComponent,canActivate:[AuthGuard], canActivateChild: [AuthGuard],children:[
+    {path:'order_history',component:OrderHistoryComponent},
+    {path:'order_details',component:OrderDetailsComponent},
+    {path:'order_success',component:OrderSuccessComponent}
+  ]},
+ 
   {path:'error',component:ErrorComponent},
 ];
 
