@@ -38,7 +38,7 @@ export class ConfiguratorComponent implements OnInit {
   configuratorService: ConfiguratorService
   router!: Router;
   dataSharingService: DataSharingService;
-  selectedPizzaIndex!: number;
+  selectedPizza!: Pizza;
 
   constructor(configuratorService: ConfiguratorService,router: Router,dataSharingService:DataSharingService) {
     this.configuratorService=configuratorService;
@@ -69,10 +69,10 @@ export class ConfiguratorComponent implements OnInit {
     this.calculateTotal();
     
   }
-  setPickedPizza(pizza: Pizza,selectedPizzaIndex:number) {
+  setPickedPizza(pizza: Pizza) {
     this.pickedPizza = pizza;
     this.pickedPizzaAmount=pizza.Price
-    this.selectedPizzaIndex=selectedPizzaIndex
+    this.selectedPizza=pizza
     this.calculateTotal();
   }
   applyDiscount() {

@@ -1,29 +1,33 @@
 <div>
-  <style>
-      .selected{
-          background-color: red !important;
-      }
-      .selectedPizza{
-          background-color: purple !important;
-      }
-  </style>
-  <h1>Toppings works!</h1>
+  
+  <h1 class="configurator-headings">Toppings! Toppings!</h1>
   <mat-list class="topping-container">
-    <mat-list-item [ngClass]="{'selected': pickedToppings.indexOf(topping)!==-1}" style="background-color: aqua;"  *ngFor='let topping of toppings' (click)='setPickedToppings(topping)'> {{topping.Name}}|| amount is {{topping.Price}} </mat-list-item>
+    <mat-list-item [ngClass]="{'selected': pickedToppings.indexOf(topping)!==-1}" *ngFor='let topping of toppings'
+      (click)='setPickedToppings(topping)'>
+      <div class="image-div">
+        <img [src]='topping.ImageUrl' alt="">
+      </div>
+      <div>
+        <p>{{topping.Name}}</p>
+      </div>
+
+    </mat-list-item>
   </mat-list>
-  <h1>$ {{toppingTotal}}</h1>
-  <h1>Pizzas works!</h1>
-  <mat-list>
-    <mat-list-item [ngClass]="{'selectedPizza': i===selectedPizzaIndex}" style="background-color: aqua;" *ngFor='let pizza of pizzas; let i=index ' (click)='setPickedPizza(pizza,i)'> {{pizza.Name}}|| amount is {{pizza.Price}} </mat-list-item>
+  <p class="topping-total">Total price +${{toppingTotal}}</p>
+  <h1 class="configurator-headings">Pizza! Pizza! Pizza!</h1>
+  <mat-list class="pizza-container">
+    <mat-list-item [ngClass]="{'selectedPizza': pizza===selectedPizza}" *ngFor='let pizza of pizzas'
+      (click)='setPickedPizza(pizza)'> {{pizza.Name}} </mat-list-item>
   </mat-list>
 
-  <div>
-      <p *ngIf="error">{{error}}</p>
-    <input matInput type="text" [(ngModel)]="discountCode">
+  <h1 class="configurator-headings">Get the discount!</h1>
+  <div class="discount-container">
+    <p *ngIf="error">{{error}}</p>
+    <input matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
     <button matButton (click)="applyDiscount()">Apply Code</button>
 
   </div>
-  
+
   <input matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
 
   <h1>$ {{total}}</h1>

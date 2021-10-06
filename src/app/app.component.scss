@@ -1,4 +1,10 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('./../assets/fonts/avenir.otf') format('otf');
+  }
 .main-container{
     position: relative;
-    margin: auto 15%;
+    margin: auto;
+    max-width: 860px;
+    font-family: 'Avenir', Helvetica, sans-serif;
 }

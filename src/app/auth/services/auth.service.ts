@@ -24,7 +24,7 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
       } else {
-        localStorage.setItem('user', '');
+        localStorage.setItem('user', '{}');
         JSON.parse(localStorage.getItem('user')!);
       }
     })
@@ -32,7 +32,7 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return (user !== '') ? true : false;
+    return (user === '{}') ? false : true;
   }
   
   SignIn(email:string, password:string) {
@@ -76,7 +76,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['log_in']);
     })
   }
 }
