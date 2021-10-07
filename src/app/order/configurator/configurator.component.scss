@@ -142,13 +142,13 @@
 
 
 .bottom-container {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: first baseline;
   height: auto;
-  padding: 2em;
+  padding: 1em;
   margin: 7em auto;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #F2F2F2;
@@ -156,29 +156,50 @@
   backdrop-filter: blur(12px);
   border-radius: 28px 28px 0px 0px;
 
-  .flex-container {
+  div.left-bottom{
+    width: 25%;
+  }
+  div.right-bottom{
+    width: 70%;
     display: flex;
-    flex-direction: column;
+    padding: 5% 0;
+    height:2em;
+  
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
 
-    
-    .quantityInput {
-      width: 34px;
-    }
-
-    span {
-      font-family: 'Avenir';
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 16px;
-      letter-spacing: 1.25px;
-      text-transform: uppercase;
-      color: #B9B9B9;
-      background-color: red;
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      height: 40PX;
+      padding: 2em;
+  
+      
+      .quantityInput {
+        width: 34px;
+      }
+  
+      span {
+        font-family: 'Avenir';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+        color: #B9B9B9;
+        // background-color: red;
+        text-align: center;
+        width: 100%;
+      }
     }
   }
+  
 
   img {
     display: block;
@@ -213,7 +234,7 @@
     margin-left: 2em;
     color: #8C8C8C;
     width: fit-content;
-    padding: 1.5em;
+    padding: 1.0em;
     background: #ECECF3;
     border-radius: 20px;
 
@@ -260,6 +281,7 @@
 
 
 .withBorder{
-  border-left: #383838;
+  border-left: #0f0f0f9d;
   border-left-style: dashed;
+  
 }

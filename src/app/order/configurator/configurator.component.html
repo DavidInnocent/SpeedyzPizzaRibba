@@ -33,19 +33,24 @@
   </div>
 
   <div class="bottom-container">
-    <div>
+    <div class="left-bottom">
       <img src="./../../../assets/images/PizzaSuccess.png" alt="Pizza image">
     </div>
-    
-    <div class="flex-container">
-      <input class="clickable quantityInput" matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
-      <span>QTY</span>
+
+    <div class="right-bottom">
+ 
+      <div class="flex-container">
+        <input class="clickable quantityInput" matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
+        <span>QTY</span>
+      </div>
+      <div class="flex-container withBorder">
+        <h1>${{total}}</h1>
+        <span>ORDER TOTAL</span>
+      </div>
+      
+        <button class="clickable" matButton (click)="continueToShipping()">Buy Pizza! Pizza!</button>
+        
     </div>
-    <div class="flex-container withBorder">
-      <h1>$ {{total}}</h1>
-      <span>ORDER TOTAL</span>
-    </div>
-    <button class="clickable" matButton (click)="continueToShipping()">Buy! Buy Pizza</button>
-  
+   
   </div>
  </div>
