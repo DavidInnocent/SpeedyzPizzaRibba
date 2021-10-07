@@ -16,8 +16,6 @@ import { DataSharingService } from 'src/app/shared/services/data-sharing.service
 export class ConfiguratorComponent implements OnInit {
 
 
-  pizzas = new Array<Pizza>();
-  toppings = new Array<Topping>();
   discounts = new Array<DiscountCode>();
 
   pizzasObservable = new Observable<Pizza[]>();
@@ -54,8 +52,6 @@ export class ConfiguratorComponent implements OnInit {
     this.pizzasObservable=this.configuratorService.pizzas;
     this.toppingsObservable=this.configuratorService.toppings;
     this.discountsObservable=this.configuratorService.discounts;
-    this.pizzasObservable.subscribe((pizzasReturned: Pizza[]) => this.pizzas = pizzasReturned);
-    this.toppingsObservable.subscribe((toppingsReturned:Topping[]) => this.toppings = toppingsReturned);
     this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
   }
 
