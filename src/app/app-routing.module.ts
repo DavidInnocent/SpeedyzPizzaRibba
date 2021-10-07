@@ -10,16 +10,14 @@ import { ErrorComponent } from './shared/error/error.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
-  {path:'sign_up',component:SignUpComponent},
-  {path:'log_in',component:LoginComponent},
-  {path:'configurator',component:ConfiguratorComponent,canActivate:[AuthGuard], canActivateChild: [AuthGuard],children:[
-    {path:'order_history',component:OrderHistoryComponent},
-    {path:'order_details',component:OrderDetailsComponent},
-    {path:'order_success',component:OrderSuccessComponent}
-  ]},
- 
-  {path:'error',component:ErrorComponent},
+  { path: '', component: LoginComponent },
+  { path: 'sign_up', component: SignUpComponent },
+  { path: 'log_in', component: LoginComponent },
+  { path: 'order_history', component: OrderHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'order_details', component: OrderDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'order_success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
+  { path: 'configurator', component: ConfiguratorComponent, canActivate: [AuthGuard] },
+  { path: 'error', component: ErrorComponent }
 ];
 
 @NgModule({

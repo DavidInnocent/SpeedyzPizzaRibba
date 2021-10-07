@@ -1,3 +1,7 @@
+:root{
+  --tertiary-color:#B95DE4;
+}
+
 .topping-container {
   display: flex;
   flex-direction: row;
@@ -6,7 +10,8 @@
 
   mat-list-item {
     display: flex;
-    flex-direction: column;
+  justify-content: center;
+  align-items: center;
     width: 98px;
     height: 148px;
     background-color: white;
@@ -17,27 +22,7 @@
     margin-right: .6em;
     margin-bottom: .6em;
 
-    .image-div {
-      position: relative;
-      background-color: #FFFFFF;
-      width: 100% !important;
-      height: 76px;
-      opacity: 0.3;
-      box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.03);
-      border-radius: 40px;
-      margin-bottom: 50%;
-
-      img {
-        position: absolute;
-        width: 24px;
-        height: 36px;
-
-
-        /* Type bold/Large */
-
-
-      }
-    }
+    
   }
 }
 
@@ -46,6 +31,11 @@
   margin-top: .5em;
   color: #383838;
   text-align: center;
+}
+
+.pizza-and-discount-container{
+    width: 80%;
+    margin: 0 auto;
 }
 
 .pizza-container {
@@ -69,10 +59,7 @@
     width: 135px;
     height: 68px;
     animation: all 3 ease;
-
-
-    /* Colors/White */
-
+    color: #8C8C8C;
 
   }
 
@@ -80,9 +67,10 @@
 
 .discount-container {
   display: flex;
+  width: 438px;
   flex-wrap: wrap;
   width: fit-content;
-  padding: 1.6em;
+  padding: .6em;
   background: #ECECF3;
   border-radius: 72px;
   margin: 0 auto;
@@ -90,12 +78,74 @@
   input{
     background: transparent;
       border: none;
+      outline: none;
+      margin-left: 2em;
+      color: #8C8C8C;
       
+  }
+  button{
+   
+    padding: 0px 24px;
+    
+    
+    width: 147px;
+    height: 68px;
+    
+    /* Border/Border Color Light */
+    
+    border: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    border-radius: 36px;
   }
 }
 
 
+.bottom-container {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: auto;
+  padding: 2em;
+  margin: 7em auto;
+  background: rgba(255, 255, 255, 0.9);
+border: 1px solid #F2F2F2;
+box-sizing: border-box;
+backdrop-filter: blur(12px);
+border-radius: 28px 28px 0px 0px;
 
+img{
+  display: block;
+  margin-top: -7em;
+  width: 162.5px;
+height: 174.49px;
+margin-right: 3em;
+  
+}
+
+div h1{
+  color:#B95DE4;
+}
+
+
+button
+{
+  padding: 16px 24px;
+width: 197px;
+height: 68px;
+border: none;
+color: #FFFFFF;
+outline: none;
+/* Colors/Tertiary */
+
+background: #B95DE4;
+border-radius: 48px;
+}
+
+ 
+
+}
 
 .selected {
   background: #E5C3F5 !important;
@@ -126,4 +176,7 @@
   font-weight: 600;
   font-size: 2em;
   line-height: 48px;
+}
+.clickable{
+    cursor: pointer;
 }

@@ -20,6 +20,10 @@ export class ConfiguratorComponent implements OnInit {
   toppings = new Array<Topping>();
   discounts = new Array<DiscountCode>();
 
+  pizzasObservable = new Observable<Pizza[]>();
+  toppingsObservable = new Observable<Topping[]>();
+  discountsObservable = new Observable<DiscountCode[]>();
+
   pickedToppings = new Array<Topping>();
   pickedPizza!: Pizza;
   quantity = 1;
@@ -47,9 +51,12 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.configuratorService.pizzas.subscribe((pizzasReturned: Pizza[]) => this.pizzas = pizzasReturned);
-    this.configuratorService.toppings.subscribe((toppingsReturned:Topping[]) => this.toppings = toppingsReturned);
-    this.configuratorService.discounts.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
+    this.pizzasObservable=this.configuratorService.pizzas;
+    this.toppingsObservable=this.configuratorService.toppings;
+    this.discountsObservable=this.configuratorService.discounts;
+    this.pizzasObservable.subscribe((pizzasReturned: Pizza[]) => this.pizzas = pizzasReturned);
+    this.toppingsObservable.subscribe((toppingsReturned:Topping[]) => this.toppings = toppingsReturned);
+    this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
   }
 
 

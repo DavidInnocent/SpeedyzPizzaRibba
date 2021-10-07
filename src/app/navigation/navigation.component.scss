@@ -1,9 +1,25 @@
 .flex-container {
-    margin:0% auto;
+  margin: 0% auto;
   padding: 2.5em;
-
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-between
+  justify-content: space-between;
 
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 128px;
+    height: 40px;
+    left: 979px;
+    top: 36px;
+    color: #383838;
+
+    /* Border/Border Color Light */
+
+    border: 1px solid #DBDBDB;
+    box-sizing: border-box;
+    border-radius: 36px;
+  }
 }
