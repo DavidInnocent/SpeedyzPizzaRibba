@@ -1,5 +1,5 @@
-:root{
-  --tertiary-color:#B95DE4;
+:root {
+  --tertiary-color: #B95DE4;
 }
 
 .topping-container {
@@ -8,10 +8,11 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  mat-list-item {
+  mat-list-item.topping {
     display: flex;
-  justify-content: center;
-  align-items: center;
+
+    justify-content: center;
+    align-items: center;
     width: 98px;
     height: 148px;
     background-color: white;
@@ -22,7 +23,41 @@
     margin-right: .6em;
     margin-bottom: .6em;
 
-    
+    .topping-inner-container {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      flex-direction: column;
+
+      mat-list-item.image-div {
+        width: 3em;
+        height: 3em;
+        padding: 1em;
+        background-color: #FFFFFF80;
+        box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.03);
+        border-radius: 30em;
+        margin: 5% auto;
+
+      }
+
+      img {
+
+        width: 24px;
+        height: 36px;
+      }
+
+      p {
+
+        margin-right: auto;
+        padding: 1em;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
   }
 }
 
@@ -33,13 +68,13 @@
   text-align: center;
 }
 
-.pizza-and-discount-container{
-    width: 80%;
-    margin: 0 auto;
+.pizza-and-discount-container {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .pizza-container {
-  width: fit-content;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -56,7 +91,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px 24px;
-    width: 135px;
+    width: 25.5%;
     height: 68px;
     animation: all 3 ease;
     color: #8C8C8C;
@@ -67,7 +102,7 @@
 
 .discount-container {
   display: flex;
-  width: 438px;
+  width: 100% !important;
   flex-wrap: wrap;
   width: fit-content;
   padding: .6em;
@@ -75,24 +110,30 @@
   border-radius: 72px;
   margin: 0 auto;
   justify-content: space-between;
-  input{
+
+  input {
     background: transparent;
-      border: none;
-      outline: none;
-      margin-left: 2em;
-      color: #8C8C8C;
-      
+    border: none;
+    outline: none;
+    margin-left: 2em;
+    color: #8C8C8C;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+
   }
-  button{
-   
+
+  button {
+
     padding: 0px 24px;
-    
-    
-    width: 147px;
+
+
+    width: 40%;
     height: 68px;
-    
+
     /* Border/Border Color Light */
-    
+
     border: 1px solid #DBDBDB;
     box-sizing: border-box;
     border-radius: 36px;
@@ -101,7 +142,7 @@
 
 
 .bottom-container {
-  width: fit-content;
+  width: 90%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -110,40 +151,75 @@
   padding: 2em;
   margin: 7em auto;
   background: rgba(255, 255, 255, 0.9);
-border: 1px solid #F2F2F2;
-box-sizing: border-box;
-backdrop-filter: blur(12px);
-border-radius: 28px 28px 0px 0px;
+  border: 1px solid #F2F2F2;
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  border-radius: 28px 28px 0px 0px;
 
-img{
-  display: block;
-  margin-top: -7em;
-  width: 162.5px;
-height: 174.49px;
-margin-right: 3em;
-  
-}
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-div h1{
-  color:#B95DE4;
-}
+    
+    .quantityInput {
+      width: 34px;
+    }
+
+    span {
+      font-family: 'Avenir';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 1.25px;
+      text-transform: uppercase;
+      color: #B9B9B9;
+      background-color: red;
+    }
+  }
+
+  img {
+    display: block;
+    margin-top: -5em;
+    width: 162.5px;
+    height: 174.49px;
+    margin-right: 3em;
+
+  }
+
+  div h1 {
+    color: #B95DE4;
+  }
 
 
-button
-{
-  padding: 16px 24px;
-width: 197px;
-height: 68px;
-border: none;
-color: #FFFFFF;
-outline: none;
-/* Colors/Tertiary */
+  button {
+    padding: 16px 24px;
+    width: 197px;
+    height: 68px;
+    border: none;
+    color: #FFFFFF;
+    outline: none;
+    /* Colors/Tertiary */
 
-background: #B95DE4;
-border-radius: 48px;
-}
+    background: #B95DE4;
+    border-radius: 48px;
+  }
 
- 
+  .quantityInput {
+    border: none;
+    outline: none;
+    margin-left: 2em;
+    color: #8C8C8C;
+    width: fit-content;
+    padding: 1.5em;
+    background: #ECECF3;
+    border-radius: 20px;
+
+  }
+
+
 
 }
 
@@ -177,6 +253,13 @@ border-radius: 48px;
   font-size: 2em;
   line-height: 48px;
 }
-.clickable{
-    cursor: pointer;
+
+.clickable {
+  cursor: pointer;
+}
+
+
+.withBorder{
+  border-left: #383838;
+  border-left-style: dashed;
 }

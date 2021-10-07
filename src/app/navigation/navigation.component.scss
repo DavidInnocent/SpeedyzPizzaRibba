@@ -4,7 +4,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
+  .logo{
+    font-family: Avenir;
+font-style: normal;
+font-weight: 800;
+font-size: 16px;
+line-height: 24px;
+  }
   input {
     background: none;
     outline: none;
