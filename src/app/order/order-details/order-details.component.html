@@ -4,7 +4,7 @@
     .orderDetail {
       border-bottom: 1px dashed #999;
       border-top: 1px dashed #999;
-      padding: 5%;
+      padding: 5% ;
     }
   
   </style>
@@ -12,10 +12,10 @@
     <div>
       <h1>Almost done!</h1>
     </div>
-    <div>
-        <ul>
-            <li>
-                <div>
+    <div class="details-container">
+       
+                <div class="common-details">
+                  <div>
                     <h3>Order details</h3>
                     <div>
               
@@ -23,12 +23,20 @@
                       <p>{{orderToppings}}</p>
                       <p>QTY: {{order.Quantity}}</p>
                     </div>
+                  </div>
+                    
               
                     <div class="orderDetail">
                       <h5>Delivery</h5>
                       <p>Free delivery within 1hour or you don't have to pay.</p>
                     </div>
                     <div>
+                      <div class="discount-container">
+                        <!-- <p *ngIf="error">{{error}}</p> -->
+                        <input class="clickable" matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
+                        <button class="clickable" matButton (click)="applyDiscount()">Apply Code</button>
+                  
+                      </div>
                       <div>
               
                         <input matInput type="text" [(ngModel)]="discountCode">
@@ -43,16 +51,15 @@
               
               
                   </div>
-            </li>
-            <li>
-                <div>
+            
+                <div class="shippingDetails common-details">
                     <h3>Shipping information</h3>
-                    <input matInput type="text" placeholder='Street name and number' [(ngModel)]="discountCode">
-                    <div>
+                    <input class="streetAddress" matInput type="text" placeholder='Street name and number' [(ngModel)]="discountCode">
+                    <div class="flex-container">
                         <input matInput type="text" placeholder='City' [(ngModel)]="discountCode">
-                        <input matInput type="text" placeholder='Postal Code' [(ngModel)]="discountCode">
+                        <input class="postal-codee" matInput type="text" placeholder='Postal Code' [(ngModel)]="discountCode">
                     </div>
-                    <input matInput type="text" placeholder='Country' [(ngModel)]="discountCode">
+                    <input class="country" matInput type="text" placeholder='Country' [(ngModel)]="discountCode">
                     <div>
                         <h3>Payment details</h3>
                         <p>Cash on delivery</p>
@@ -61,8 +68,7 @@
                     <button matButton (click)="finishOrderingPizza()">Finish Order</button>
                 
                 </div>
-            </li>
-        </ul>
+            
       
   
     </div>
