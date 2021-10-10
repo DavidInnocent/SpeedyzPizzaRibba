@@ -58,6 +58,7 @@ import { AuthService } from './auth/services/auth.service';
     MatListModule,
     MatIconModule,   
     MatCardModule, 
+    AngularFirestoreModule.enablePersistence(),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

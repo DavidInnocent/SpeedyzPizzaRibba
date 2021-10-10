@@ -1,13 +1,4 @@
-<p>order-details works!</p>
 
-<style>
-    .orderDetail {
-      border-bottom: 1px dashed #999;
-      border-top: 1px dashed #999;
-      padding: 5% ;
-    }
-  
-  </style>
   <mat-card>
     <div>
       <h1>Almost done!</h1>
@@ -37,11 +28,7 @@
                         <button class="clickable" matButton (click)="applyDiscount()">Apply Code</button>
                   
                       </div>
-                      <div>
-              
-                        <input matInput type="text" [(ngModel)]="discountCode">
-                        <button matButton (click)="applyDiscount()">Apply Code</button>
-                      </div>
+                      
               
                     </div>
                     <div>
@@ -53,20 +40,26 @@
                   </div>
             
                 <div class="shippingDetails common-details">
+                  
                     <h3>Shipping information</h3>
-                    <input class="streetAddress" matInput type="text" placeholder='Street name and number' [(ngModel)]="discountCode">
+                    <input class="streetAddress" matInput type="text" placeholder='Street name and number' [(ngModel)]="address">
                     <div class="flex-container">
                         <input matInput type="text" placeholder='City' [(ngModel)]="discountCode">
-                        <input class="postal-codee" matInput type="text" placeholder='Postal Code' [(ngModel)]="discountCode">
+                        <input class="postal-code" matInput type="text" placeholder='Postal Code' [(ngModel)]="postalCode">
                     </div>
-                    <input class="country" matInput type="text" placeholder='Country' [(ngModel)]="discountCode">
+                    <input class="country" matInput type="text" placeholder='Country' [(ngModel)]="country">
                     <div>
                         <h3>Payment details</h3>
                         <p>Cash on delivery</p>
                     </div>
 
-                    <button matButton (click)="finishOrderingPizza()">Finish Order</button>
+                    <div class="bottom-button-container">
+                      <button matButton (click)="finishOrderingPizza()">Finish Order</button>
                 
+                    </div>
+                   
+                  
+                 
                 </div>
             
       

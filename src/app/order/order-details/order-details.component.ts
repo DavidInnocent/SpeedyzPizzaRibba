@@ -10,6 +10,9 @@ import { DataSharingService } from 'src/app/shared/services/data-sharing.service
 })
 export class OrderDetailsComponent implements OnInit {
 
+  country!:string;
+  postalCode!:string;
+  address!:string;
   dataService: DataSharingService;
   order!: Order
   orderToppings!:string;

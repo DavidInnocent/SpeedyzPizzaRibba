@@ -1,7 +1,7 @@
 <div class="flex-container">
         <p class="logo">Pizz-á-tron</p>
         <img src="./../../assets/images/🍕.svg" alt="">
-        <input (click)="authService.SignOut()" type="button" value="Logout">
+        <input (click)="authService.SignOut()" [hidden]="authService.enableLogout$ | async" type="button" value="Logout">
 
 </div>
 

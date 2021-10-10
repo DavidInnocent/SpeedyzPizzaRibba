@@ -3,13 +3,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Auth } from 'firebase/auth';
+import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any;
+  enableLogout$=new BehaviorSubject<boolean>(true)
+
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -20,12 +22,11 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
+        localStorage.setItem('user', JSON.stringify(user));
+       
       } else {
         localStorage.setItem('user', '{}');
-        JSON.parse(localStorage.getItem('user')!);
+      
       }
     })
   }
@@ -40,6 +41,7 @@ export class AuthService {
       .then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['configurator']);
+          this.enableLogout$.next(false);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -76,6 +78,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.enableLogout$.next(true);
       this.router.navigate(['log_in']);
     })
   }
