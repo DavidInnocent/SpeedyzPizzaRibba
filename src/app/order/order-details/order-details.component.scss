@@ -8,7 +8,11 @@ mat-card {
   .orderDetail {
     border-bottom: 1px dashed #999;
     border-top: 1px dashed #999;
-    padding: 5%;
+    padding: 5% 0 2% 5%;
+  }
+
+  .top-orderdetails {
+    padding-left: 5%;
   }
 
   div h1 {
@@ -76,7 +80,9 @@ mat-card {
       box-sizing: border-box;
       background: #ECECF3;
       border-radius: 72px;
+      margin: 5%;
       
+
       justify-content: space-between;
 
       input {
@@ -100,13 +106,29 @@ mat-card {
 
 
         width: 40%;
-        height: 68px;
+        height: 55px;
 
         /* Border/Border Color Light */
 
         border: 1px solid #DBDBDB;
         box-sizing: border-box;
         border-radius: 36px;
+      }
+    }
+
+    .flex-container-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 5%;
+
+      // background-color: red;
+     .major {
+        font-family: "Avenir", Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 40px;
+        
       }
     }
 
@@ -126,14 +148,14 @@ mat-card {
     input {
 
       margin-bottom: 1em;
-      padding: 1.3em;
+      padding: 1em;
       box-sizing: border-box;
       background: #ECECF3;
       border-radius: 72px;
       outline: none;
       border: none;
       font-size: 16px;
-line-height: 24px;
+      line-height: 24px;
     }
 
     .flex-container {
@@ -142,7 +164,7 @@ line-height: 24px;
 
       input {
         width: 50%;
-        
+
         // margin:0%;
 
       }
@@ -171,17 +193,17 @@ line-height: 24px;
         background: linear-gradient(93.49deg, #B490DF 4.76%, #C697E9 98.36%);
         border-radius: 36px;
         font-family: "Avenir", Helvetica, sans-serif;
-      
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 28px;
-/* identical to box height, or 140% */
+
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        /* identical to box height, or 140% */
 
 
-/* Colors/White */
+        /* Colors/White */
 
-color: #FFFFFF;
+        color: #FFFFFF;
 
       }
     }
