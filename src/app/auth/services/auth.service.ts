@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  enableLogout$=new BehaviorSubject<boolean>(false)
+  enableLogout$=new BehaviorSubject<boolean>(true)
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service

@@ -21,21 +21,24 @@
                       <h5>Delivery</h5>
                       <p>Free delivery within 1hour or you don't have to pay.</p>
                     </div>
-                    <div>
+                    <div class="discount-outer">
                       <div class="discount-container">
                         <!-- <p *ngIf="error">{{error}}</p> -->
-                        <input class="clickable" matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
-                        <button class="clickable" matButton (click)="applyDiscount()">Apply Code</button>
+                        <input class="clickable" matInput type="text" placeholder="Discount Code" [(ngModel)]="discountCode">
+                        <button class="clickable" matButton (click)="applyDiscount()">Apply</button>
                   
                       </div>
                       
               
                     </div>
-                    <div class="flex-container-bottom">
+                    <div>
+                      <div class="flex-container-bottom">
                         <span>Total price</span>
                         <span class="commonColor major">${{order.Total}}</span>
                         <!-- <span class="commonColor">${{order.Total}}34</span> -->
                     </div>
+                    </div>
+                    
               
               
                   </div>

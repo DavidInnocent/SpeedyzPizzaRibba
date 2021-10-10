@@ -71,50 +71,53 @@ mat-card {
       ;
     }
 
-    .discount-container {
-      display: flex;
-      width: 100% !important;
-      flex-wrap: wrap;
-      margin-top: 1em;
-      padding: .5em;
-      box-sizing: border-box;
-      background: #ECECF3;
-      border-radius: 72px;
-      margin: 5%;
-      
+    .discount-outer{
 
-      justify-content: space-between;
-
-      input {
-        width: 60% !important;
-        background: transparent;
-        border: none;
-        outline: none;
-        color: #8C8C8C;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 28px;
-        width: fit-content;
-
-      }
-
-
-      button {
-
-        padding: 0px 24px;
-
-
-        width: 40%;
-        height: 55px;
-
-        /* Border/Border Color Light */
-
-        border: 1px solid #DBDBDB;
+      padding-right: 10% !important;
+      .discount-container {
+        display: flex;
+        width: 100% !important;
+        flex-wrap: wrap;
+        margin-top: 1em;
+        padding: .5em;
         box-sizing: border-box;
-        border-radius: 36px;
+        background: #ECECF3;
+        border-radius: 72px;
+        margin: 5%;
+        justify-content: space-between;
+  
+        input {
+          width: 60% !important;
+          background: transparent;
+          border: none;
+          outline: none;
+          color: #8C8C8C;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 28px;
+          width: fit-content;
+  
+        }
+  
+  
+        button {
+  
+          padding: 0px 24px;
+  
+  
+          width: 40%;
+          height: 55px;
+  
+          /* Border/Border Color Light */
+  
+          border: 1px solid #DBDBDB;
+          box-sizing: border-box;
+          border-radius: 36px;
+        }
       }
     }
+    
 
     .flex-container-bottom {
       display: flex;
