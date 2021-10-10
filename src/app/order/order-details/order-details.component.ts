@@ -13,6 +13,7 @@ export class OrderDetailsComponent implements OnInit {
   country!:string;
   postalCode!:string;
   address!:string;
+  city!:string
   dataService: DataSharingService;
   order!: Order
   orderToppings!:string;
