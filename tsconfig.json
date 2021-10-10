@@ -25,6 +25,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictPropertyInitialization": false,
     "strictInjectionParameters": true,
+    "strictNullChecks": false,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "skipLibCheck": true

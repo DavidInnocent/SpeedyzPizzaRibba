@@ -46,11 +46,22 @@
                 <div class="shippingDetails common-details">
                   <form [formGroup]='shippingForm' (ngSubmit)='finishOrderingPizza()'>
                     <h3>Shipping information</h3>
-                    <input class="streetAddress" matInput type="text" placeholder='Street name and number' formControlName="address">
+                    <mat-error *ngFor="let validation of validation_messages.address">
+                      <mat-error class="error-message" *ngIf="shippingForm.get('address').hasError(validation.type)! && (shippingForm.get('address').dirty || shippingForm.get('address').touched)">{{validation.message}}</mat-error>
+                    </mat-error><input class="streetAddress" matInput type="text" placeholder='Street name and number' formControlName="address">
                     <div class="flex-container">
+                      <mat-error *ngFor="let validation of validation_messages.city">
+                        <mat-error class="error-message" *ngIf="shippingForm.get('city').hasError(validation.type)! && (shippingForm.get('city').dirty || shippingForm.get('city').touched)">{{validation.message}}</mat-error>
+                      </mat-error>
                         <input matInput type="text" placeholder='City' formControlName="city">
+                        <mat-error *ngFor="let validation of validation_messages.postalCode">
+                          <mat-error class="error-message" *ngIf="shippingForm.get('postalCode').hasError(validation.type)! && (shippingForm.get('postalCode').dirty || shippingForm.get('postalCode').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
                         <input class="postal-code" matInput type="text" placeholder='Postal Code' formControlName="postalCode">
                     </div>
+                    <mat-error *ngFor="let validation of validation_messages.country">
+                      <mat-error class="error-message" *ngIf="shippingForm.get('country').hasError(validation.type)! && (shippingForm.get('country').dirty || shippingForm.get('country').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
                     <input class="country" matInput type="text" placeholder='Country' formControlName="country">
                     <div>
                         <h3>Payment details</h3>
