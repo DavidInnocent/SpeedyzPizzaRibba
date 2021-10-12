@@ -9,7 +9,7 @@
       <div class="bottom">
         <div class="total">
           <p>SubTotal</p>
-          <h1>${{order.Total-order.DiscountApplied}}</h1>
+          <h1>${{order.Total}}</h1>
         </div>
         <div class="discount">
           <p>Discount</p>
@@ -17,7 +17,7 @@
         </div>
         <div class="grand-total">
           <p>Grand total:</p>
-          <h1>${{order.Total}}</h1>
+          <h1>${{order.Total-order.DiscountApplied}}</h1>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <p>Country: <span>{{order.Shipping.Country}}</span></p>
         <p>Postal Code: <span>{{order.Shipping.PostalCode}}</span></p>
       </div>
-      <button type="submit">Reorder</button>
+      <button type="submit" (click)='ReOrder(order)' >Reorder</button>
     </div>
   </div>
 </mat-card>
