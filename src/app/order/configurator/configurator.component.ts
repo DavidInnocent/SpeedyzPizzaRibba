@@ -95,11 +95,12 @@ export class ConfiguratorComponent implements OnInit {
   {
     let totalForToppings=0;
     this.pickedToppings.forEach(topping=>totalForToppings+=+topping.Price)
-    let totalBeforeDiscount=totalForToppings+this.pickedPizzaAmount;
-    let discount=(this.discountApplied/1000)*totalBeforeDiscount;
-    this.total=totalBeforeDiscount-discount;
-    this.total*=this.quantity;
     this.toppingTotal=totalForToppings;
+    
+    let totalBeforeDiscount=totalForToppings+this.pickedPizzaAmount;
+    this.total=totalBeforeDiscount-this.discountApplied;
+    this.total*=this.quantity;
+    
 
   }
   onSearchChange($event:any){
