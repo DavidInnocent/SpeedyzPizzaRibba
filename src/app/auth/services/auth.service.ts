@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Auth } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 
@@ -10,7 +11,7 @@ import { User } from 'src/app/shared/models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  enableLogout$=new BehaviorSubject<boolean>(true)
+  enableLogout$=new BehaviorSubject<boolean>(false)
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -22,9 +23,13 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
+        this.router.navigateByUrl('configurator');
+        this.enableLogout$.next(false);
         localStorage.setItem('user', JSON.stringify(user));
        
       } else {
+        this.router.navigateByUrl('/');
+        this.enableLogout$.next(true);
         localStorage.setItem('user', '{}');
       
       }
@@ -60,6 +65,18 @@ export class AuthService {
       })
   }
  
+  SignInWithGoogle(){
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(value=>{
+      console.log(value.user);
+    })
+
+  }
+  SignInWithFacebook(){
+    this.afAuth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(value=>{
+      console.log(value.user);
+    })
+
+  }
 
   SetUserData(user:any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
@@ -78,8 +95,6 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.enableLogout$.next(true);
-      this.router.navigate(['log_in']);
     })
   }
 }
