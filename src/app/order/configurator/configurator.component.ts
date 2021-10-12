@@ -27,9 +27,9 @@ export class ConfiguratorComponent implements OnInit {
   pickedPizza!: Pizza;
   quantity = 1;
   discountedPizza = false;
-
+  disableDiscount=false;
   pickedOrder!: Order;
-  discountCode!:string;
+  discountCode='';
   error!:string;
   total = 0;
   discountApplied=0;
@@ -54,6 +54,7 @@ export class ConfiguratorComponent implements OnInit {
     this.toppingsObservable=this.configuratorService.toppings;
     this.discountsObservable=this.configuratorService.discounts;
     this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
+    this.dataSharingService.disounts$=this.discountsObservable;
   }
 
 
@@ -86,6 +87,8 @@ export class ConfiguratorComponent implements OnInit {
       this.error = "Discount code is invalid";
       return;
     }
+    this.disableDiscount=true;
+    this.discountCode='Discount applied'
     this.discountApplied=discountToBeApplied[0].Amount;
     this.discountedPizza=true;
     this.calculateTotal();
@@ -96,7 +99,7 @@ export class ConfiguratorComponent implements OnInit {
     let totalForToppings=0;
     this.pickedToppings.forEach(topping=>totalForToppings+=+topping.Price)
     this.toppingTotal=totalForToppings;
-    
+
     let totalBeforeDiscount=totalForToppings+this.pickedPizzaAmount;
     this.total=totalBeforeDiscount-this.discountApplied;
     this.total*=this.quantity;
@@ -112,10 +115,11 @@ export class ConfiguratorComponent implements OnInit {
     this.pickedOrder = {
       PizzaType: this.pickedPizza,
       Quantity: this.quantity,
-      DiscountApplied: this.discountedPizza,
+      DiscountApplied: this.discountApplied,
       Toppings: this.pickedToppings,
       Total:this.total,
-      Shipping:<ShippingDetails>{}
+      Shipping:<ShippingDetails>{},
+      OrderId:''
     }
     this.dataSharingService.setOrder(this.pickedOrder);
     this.router.navigateByUrl('/order_details');

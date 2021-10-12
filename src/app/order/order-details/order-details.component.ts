@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DiscountCode } from 'src/app/models/discount-code';
 import { Order } from 'src/app/models/order';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
+import { OrderDetailService } from './order-detail.service';
 
 @Component({
   selector: 'app-order-details',
@@ -35,48 +37,59 @@ export class OrderDetailsComponent implements OnInit {
     address: new FormControl('',[Validators.required,Validators.minLength(5)]),
     city: new FormControl('',[Validators.required,Validators.minLength(2)]),
   });
-  dataService: DataSharingService;
+  
+  discounts=new Array<DiscountCode>();
   order!: Order
   orderToppings!:string;
-  discountCode!:string;
-  router: Router;
-  discountText='Enter discount code'
+  discountCode='';
   disableDiscount=false;
-  constructor(dataService: DataSharingService,router:Router) {
-    this.dataService = dataService;
-    this.router=router;
+  total!: number;
+  discountText='Discount code'
+  constructor(public dataService: DataSharingService,public router:Router,public orderService:OrderDetailService) {
   }
 
   ngOnInit(): void {
     this.order = this.dataService.getOrder();
+    this.total=this.order.Total;
+    this.dataService.disounts$.subscribe(discounts=>this.discounts=discounts);
     this.orderToppings=this.order.Toppings.map(topping=>topping.Name).join();
-    if(this.order.DiscountApplied){
-      this.discountText='Discount already applied'
+    if(this.order.DiscountApplied!==0){
       this.disableDiscount=true;
+      this.discountText='Discount applied'
       return
     }
   }
   applyDiscount() {
 
-    // const discountToBeApplied = this.discounts.filter(discount => discount.Name.toLowerCase() === this.discountCode.toLowerCase());
-    // if (discountToBeApplied.length == 0) {
-    //   this.error = "Discount code is invalid";
-    //   return;
-    // }
-    // this.discountApplied=discountToBeApplied[0].Amount;
-    // this.dataSharingService.setDiscount(true)
-    // this.calculateTotal();
+    console.log(this.discounts);
+    const discountToBeApplied = this.discounts.filter(discount => discount.Name.toLowerCase() === this.discountCode.toLowerCase());
+    if (discountToBeApplied.length == 0) {
+      console.log("Discount not valid")
+      return;
+    }
+    this.disableDiscount=true
+    this.discountText='Discount applied'
+    const discount=discountToBeApplied[0].Amount;
+    this.order.DiscountApplied=discount;
+    this.total-=discount;
+
+    
   }
   finishOrderingPizza(){
-   
+    if(!this.shippingForm.valid)
+    {
+      console.log('valid shipping information required')
+      return
+    }
+   this.order.Total=this.total;
     this.order.Shipping={
       StreetNameAndNumber:this.shippingForm.controls['address'].value,
       City:this.shippingForm.controls['city'].value,
       PostalCode:this.shippingForm.controls['postalCode'].value,
       Country:this.shippingForm.controls['country'].value
     }
-    console.log(this.order)
-    // this.router.navigateByUrl('/order_success');
+    this.orderService.saveOrder(this.order);
+    this.router.navigateByUrl('/order_success');
   }
 
 }

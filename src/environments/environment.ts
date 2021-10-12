@@ -16,7 +16,9 @@ export const environment = {
   },
   TOPPINGS:"Toppings",
   PIZZAS:"Pizzas",
-  DISCOUNTS:"DiscountCodes"
+  DISCOUNTS:"DiscountCodes",
+  ORDERS:"Orders"
+  
 
 };
 

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { DiscountCode } from 'src/app/models/discount-code';
 import { Order } from 'src/app/models/order';
 
 @Injectable({
@@ -8,6 +10,8 @@ export class DataSharingService {
 
   private order!:Order
   private discountAdded=false;
+  private discounts=new Array<DiscountCode>();
+  disounts$!:Observable<any[]>;
   constructor() { }
   getOrder():Order{
     return this.order;
@@ -22,5 +26,6 @@ export class DataSharingService {
 
   setDiscount(discountValue:boolean){
     this.discountAdded=discountValue;
+    
   }
 }

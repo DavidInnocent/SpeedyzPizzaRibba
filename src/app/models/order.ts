@@ -5,8 +5,9 @@ import { Topping } from "./topping";
 export interface Order {
     Toppings:Array<Topping>,
     PizzaType:Pizza,
-    DiscountApplied:boolean,
+    DiscountApplied:number,
     Quantity:number,
     Total:number,
-    Shipping:ShippingDetails
+    Shipping:ShippingDetails,
+    OrderId:string
 }

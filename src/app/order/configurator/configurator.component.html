@@ -24,10 +24,11 @@
     </mat-list>
 
     <h1 class="configurator-headings">Get the discount!</h1>
+    <p *ngIf="error">{{error}}</p>
     <div class="discount-container">
-      <p *ngIf="error">{{error}}</p>
-      <input class="clickable" matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
-      <button class="clickable" matButton (click)="applyDiscount()">Apply Code</button>
+      
+      <input class="clickable" [disabled]='this.disableDiscount' matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
+      <button class="clickable" [disabled]='this.disableDiscount' matButton (click)="applyDiscount()">Apply Code</button>
 
     </div>
   </div>
