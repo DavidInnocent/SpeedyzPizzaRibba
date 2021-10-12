@@ -1,1 +1,53 @@
-<p>sign-up works!</p>
+<div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="authBlock">
+        <h3>Sign In</h3>
+        <form action="" [formGroup]='registrationForm' (ngSubmit)='finishSignUP()'>
+            <div class="formGroup">
+                <input type="text" class="formControl" placeholder="Username" formControlName='username' required>
+              </div>
+              <div class="formGroup">
+                <input type="email" class="formControl" placeholder="Email" formControlName='email' required>
+              </div>
+              
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="Password" formControlName='password' required>
+        </div>
+        <div class="formGroup">
+            <input type="password" class="formControl" placeholder="Retype Password" formControlName='passwordRetry' required>
+          </div>
+  
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="formGroup">
+          <input type="submit" class="btn btnPrimary" value="Log in" [disabled]='!registrationForm.valid'>
+        </div>
+        </form>
+  
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+  
+        <!-- Calling GoogleAuth Api from AuthService -->
+        <div class="formGroup">
+          <button type="button" class="btn googleBtn" (click)="authService.SignInWithGoogle()">
+            <i class="fab fa-google-plus-g"></i>
+            Log in with Google
+          </button>
+          <button type="button" class="btn googleBtn" (click)="authService.SignInWithFacebook()">
+            <i class="fab fa-google-plus-g"></i>
+            Log in with Facebook
+          </button>
+        </div>
+  
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+      </div>
+  
+      <div class="redirectToLogin">
+        <span>Don't have an account?<span class="redirect" routerLink="/sign_up"> Sign Up</span></span>
+      </div>
+  
+    </div>
+  </div>
