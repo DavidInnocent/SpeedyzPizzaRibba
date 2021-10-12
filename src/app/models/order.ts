@@ -1,4 +1,5 @@
 import { Pizza } from "./pizza";
+import { ShippingDetails } from "./shipping-details";
 import { Topping } from "./topping";
 
 export interface Order {
@@ -6,5 +7,6 @@ export interface Order {
     PizzaType:Pizza,
     DiscountApplied:boolean,
     Quantity:number,
-    Total:number
+    Total:number,
+    Shipping:ShippingDetails
 }

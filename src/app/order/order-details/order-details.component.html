@@ -21,10 +21,10 @@
                       <h5>Delivery</h5>
                       <p>Free delivery within 1hour or you don't have to pay.</p>
                     </div>
-                    <div class="discount-outer">
+                    <div class="discount-outer" [hidden]='disableDiscount'>
                       <div class="discount-container">
                         <!-- <p *ngIf="error">{{error}}</p> -->
-                        <input class="clickable" matInput type="text" placeholder="Discount Code" [(ngModel)]="discountCode">
+                        <input class="clickable" matInput type="text" [placeholder]="discountText" [(ngModel)]="discountCode">
                         <button class="clickable" matButton (click)="applyDiscount()">Apply</button>
                   
                       </div>

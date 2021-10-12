@@ -7,6 +7,7 @@ import { Topping } from 'src/app/models/topping';
 import { ConfiguratorService } from './configurator.service';
 import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
+import { ShippingDetails } from 'src/app/models/shipping-details';
 
 @Component({
   selector: 'app-configurator',
@@ -86,7 +87,7 @@ export class ConfiguratorComponent implements OnInit {
       return;
     }
     this.discountApplied=discountToBeApplied[0].Amount;
-    this.dataSharingService.setDiscount(true)
+    this.discountedPizza=true;
     this.calculateTotal();
   }
 
@@ -112,7 +113,8 @@ export class ConfiguratorComponent implements OnInit {
       Quantity: this.quantity,
       DiscountApplied: this.discountedPizza,
       Toppings: this.pickedToppings,
-      Total:this.total
+      Total:this.total,
+      Shipping:<ShippingDetails>{}
     }
     this.dataSharingService.setOrder(this.pickedOrder);
     this.router.navigateByUrl('/order_details');

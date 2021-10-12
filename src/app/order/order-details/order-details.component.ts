@@ -10,6 +10,7 @@ import { DataSharingService } from 'src/app/shared/services/data-sharing.service
   styleUrls: ['./order-details.component.scss']
 })
 export class OrderDetailsComponent implements OnInit {
+  orderPlaced!:Order
   validation_messages = {
     'address': [
       { type: 'required', message: 'Address is required' },
@@ -39,6 +40,8 @@ export class OrderDetailsComponent implements OnInit {
   orderToppings!:string;
   discountCode!:string;
   router: Router;
+  discountText='Enter discount code'
+  disableDiscount=false;
   constructor(dataService: DataSharingService,router:Router) {
     this.dataService = dataService;
     this.router=router;
@@ -47,6 +50,11 @@ export class OrderDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.order = this.dataService.getOrder();
     this.orderToppings=this.order.Toppings.map(topping=>topping.Name).join();
+    if(this.order.DiscountApplied){
+      this.discountText='Discount already applied'
+      this.disableDiscount=true;
+      return
+    }
   }
   applyDiscount() {
 
@@ -60,7 +68,15 @@ export class OrderDetailsComponent implements OnInit {
     // this.calculateTotal();
   }
   finishOrderingPizza(){
-    this.router.navigateByUrl('/order_success');
+   
+    this.order.Shipping={
+      StreetNameAndNumber:this.shippingForm.controls['address'].value,
+      City:this.shippingForm.controls['city'].value,
+      PostalCode:this.shippingForm.controls['postalCode'].value,
+      Country:this.shippingForm.controls['country'].value
+    }
+    console.log(this.order)
+    // this.router.navigateByUrl('/order_success');
   }
 
 }
