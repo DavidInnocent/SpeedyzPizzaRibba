@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 
 @Injectable({
@@ -11,6 +11,7 @@ import { User } from 'src/app/shared/models/user';
 })
 export class AuthService {
   enableLogout$ = new BehaviorSubject<boolean>(false);
+  error$ = new Subject<string>();
   username = ''
 
   constructor(
@@ -40,7 +41,7 @@ export class AuthService {
       }
       else {
       
-        // this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/');
         this.enableLogout$.next(true);
 
 
@@ -68,7 +69,7 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.error$.next(error.message)
       })
   }
 
@@ -81,7 +82,7 @@ export class AuthService {
         return
 
       }).catch((error) => {
-        window.alert(error.message)
+        this.error$.next(error.message)
       })
   }
 

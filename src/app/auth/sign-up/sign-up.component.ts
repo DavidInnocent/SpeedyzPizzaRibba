@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
   constructor(public authService:AuthService) { }
 
   ngOnInit(): void {
+    this.authService.error$.subscribe(error=>console.log(error));
   }
 
   finishSignUP(){
