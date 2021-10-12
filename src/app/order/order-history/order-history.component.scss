@@ -1,4 +1,20 @@
-h1 {}
+.heading {
+  color: #383838;
+  /* Type bold/XX Large */
+
+  font-family: 'Avenir', Helvetica, sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 40px;
+padding: 5%;
+line-height: 48px;
+/* identical to box height, or 120% */
+
+text-align: center;
+/* Text colors/Text */
+
+color: #383838;
+}
 
 mat-card {
   margin-bottom: 10% !important;
