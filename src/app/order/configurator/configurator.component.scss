@@ -2,6 +2,21 @@
   --tertiary-color: #B95DE4;
 }
 
+.orderDetails-container{
+  display: flex;
+  box-sizing: border-box;
+  align-self: center;
+  justify-content: center;
+  padding: 2%;
+  cursor: pointer;
+  background-color: #f2f2f2;  
+  p{
+    color: #B95DE4;
+    font-size: large;
+    font-weight: 600;
+  }
+}
+
 .topping-container {
   display: flex;
   flex-direction: row;
