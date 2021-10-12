@@ -1,7 +1,9 @@
 h1 {}
 
 mat-card {
+  margin-bottom: 10% !important;
   .details-container {
+   
 
     display: flex;
 
@@ -45,6 +47,7 @@ mat-card {
 
     .right-panel {
 
+      border-left: 1px dashed #8C8C8C;
       flex-flow: column;
       justify-content: center;
       align-items: center;
@@ -59,8 +62,10 @@ mat-card {
         margin-top: 10%;
         padding: 0;
         display: flex;
+        max-width: 50%;
 
         mat-list-item {
+          flex: 1;
 
 
           div {
@@ -91,13 +96,16 @@ mat-card {
         }
       }
 
+      padding: 2%;
+    
       button {
 
+        
         padding: 16px 24px;
         margin-top: 5%;
-
         width: 312px;
         height: 68px;
+        right: 0%;
         border: none;
         color: #FFFFFF;
         font-size: 16px;

@@ -1,59 +1,47 @@
 <h1>Your Order History</h1>
-<mat-card>
+<mat-card *ngFor="let order of orderService.orders$ |async">
 
   <div class="details-container">
     <div class="left-panel">
       <div class="top">
-        <img src="https://curlytales.com/wp-content/uploads/2019/09/pizza-e1569475959190-1280x720.jpg" alt="">
-
+        <img [src]='order.PizzaType.ImageUrl' alt="">
       </div>
       <div class="bottom">
         <div class="total">
           <p>SubTotal</p>
-          <h1>$45</h1>
+          <h1>${{order.Total-order.DiscountApplied}}</h1>
         </div>
         <div class="discount">
           <p>Discount</p>
-          <h1>$45</h1>
+          <h1>${{order.DiscountApplied}}</h1>
         </div>
         <div class="grand-total">
           <p>Grand total:</p>
-          <h1>$45</h1>
+          <h1>${{order.Total}}</h1>
         </div>
       </div>
     </div>
     <div class="right-panel">
 
       <div class="top">
-        <h1> <span>1</span>x Pizza name</h1>
+        <h1> <span>{{order.Quantity}}</span>x {{order.PizzaType.Name}}</h1>
 
       </div>
       <mat-list>
-        <mat-list-item>
+        <mat-list-item *ngFor="let topping of order.Toppings">
             <div class="topping">
-              <img src="https://res.cloudinary.com/ximmoz-corp/image/upload/v1633346771/prototyp/tsss21oewuw9h3wkt0ke.png" alt="">
-              <p>Topping name</p>
+              <img [src]='topping.ImageUrl' alt="">
+              <p>{{topping.Name}}</p>
             </div>
           </mat-list-item>
-          <mat-list-item>
-            <div class="topping">
-              <img src="https://res.cloudinary.com/ximmoz-corp/image/upload/v1633346771/prototyp/tsss21oewuw9h3wkt0ke.png" alt="">
-              <p>Topping name</p>
-            </div>
-          </mat-list-item>
-          <mat-list-item>
-            <div class="topping">
-              <img src="https://res.cloudinary.com/ximmoz-corp/image/upload/v1633346771/prototyp/tsss21oewuw9h3wkt0ke.png" alt="">
-              <p>Topping name</p>
-            </div>
-          </mat-list-item>
-              
       </mat-list>
       <div class="shipping-details">
         <h1>Shipping details</h1>
-        <p>Country: <span>Kenya</span></p>
-        <p>City: <span>Kenya</span></p>
-        <p>Postal Code: <span>Kenya</span></p>
+        <p>Streat Address: <span>{{order.Shipping.StreetNameAndNumber}}</span></p>
+        
+        <p>City: <span>{{order.Shipping.City}}</span></p>
+        <p>Country: <span>{{order.Shipping.Country}}</span></p>
+        <p>Postal Code: <span>{{order.Shipping.PostalCode}}</span></p>
       </div>
       <button type="submit">Reorder</button>
     </div>
