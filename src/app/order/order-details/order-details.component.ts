@@ -78,7 +78,7 @@ export class OrderDetailsComponent implements OnInit {
   finishOrderingPizza(){
     if(!this.shippingForm.valid)
     {
-      console.log('valid shipping information required')
+      alert('All shipping fields have to be filled to continue.')
       return
     }
    this.order.Total=this.total;

@@ -1,53 +1,49 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-  
-      <div class="authBlock">
-        <h3>Sign In</h3>
-        <form action="" [formGroup]='registrationForm' (ngSubmit)='finishSignUP()'>
-            <div class="formGroup">
-                <input type="text" class="formControl" placeholder="Username" formControlName='username' required>
-              </div>
-              <div class="formGroup">
-                <input type="email" class="formControl" placeholder="Email" formControlName='email' required>
-              </div>
-              
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" formControlName='password' required>
-        </div>
-        <div class="formGroup">
-            <input type="password" class="formControl" placeholder="Retype Password" formControlName='passwordRetry' required>
-          </div>
-  
-        <!-- Calling SignIn Api from AuthService -->
-        <div class="formGroup">
-          <input type="submit" class="btn btnPrimary" value="Log in" [disabled]='!registrationForm.valid'>
-        </div>
-        </form>
-  
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
-        </div>
-  
-        <!-- Calling GoogleAuth Api from AuthService -->
-        <div class="formGroup">
-          <button type="button" class="btn googleBtn" (click)="authService.SignInWithGoogle()">
-            <i class="fab fa-google-plus-g"></i>
-            Log in with Google
-          </button>
-          <button type="button" class="btn googleBtn" (click)="authService.SignInWithFacebook()">
-            <i class="fab fa-google-plus-g"></i>
-            Log in with Facebook
-          </button>
-        </div>
-  
-        <div class="forgotPassword">
-          <span routerLink="/forgot-password">Forgot Password?</span>
-        </div>
-      </div>
-  
-      <div class="redirectToLogin">
-        <span>Don't have an account?<span class="redirect" routerLink="/sign_up"> Sign Up</span></span>
-      </div>
-  
-    </div>
+<mat-card class="authBlock">
+  <div class="left-panel">
+    <img src="https://res.cloudinary.com/ximmoz-corp/image/upload/v1634198251/prototyp/undraw_authentication_fsn5_1.svg"
+      alt="">
   </div>
+  <div class="right-panel">
+    <h1>Registration</h1>
+    <div class="federatedAuth">
+      <button type="button" class="btn googleBtn" (click)="authService.SignInWithGoogle()">
+        <!-- <i class="fab fa-google-plus-g"></i> -->
+        <fa-icon [icon]="faGoogle"></fa-icon>
+        Google
+      </button>
+      <button type="button" class="btn googleBtn" (click)="authService.SignInWithFacebook()">
+        <!-- <i class="fab fa-google-plus-g"></i> -->
+        <fa-icon [icon]="faFacebook"></fa-icon>
+        Facebook
+      </button>
+    </div>
+    <form [formGroup]='signUpForm' (ngSubmit)='signUp()'>
+
+      <!-- <mat-error *ngFor="let validation of validation_messages.email">
+        <mat-error class="error-message"
+          *ngIf="loginForm.get('email').hasError(validation.type)! && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+          {{validation.message}}</mat-error>
+      </mat-error> -->
+      <input class="password" matInput type="text" placeholder='User Name' formControlName="username">
+      
+      <input class="password" matInput type="text" placeholder='Email address' formControlName="email">
+      <!-- <mat-error *ngFor="let validation of validation_messages.password">
+        <mat-error class="error-message"
+          *ngIf="loginForm.get('password').hasError(validation.type)! && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+          {{validation.message}}</mat-error>
+      </mat-error> -->
+      <input class="password" matInput type="text" placeholder='Password' formControlName="password">
+      <button type="submit" matButton>Sign Up</button>
+    </form>
+   
+    
+    <div class="logIn">
+      <p routerLink="log_in">Already have an account?<span>Log In</span></p>
+    </div>
+
+  </div>
+
+
+
+
+</mat-card>

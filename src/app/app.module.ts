@@ -27,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule,ReactiveFormsModule,Validators } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { AuthService } from './auth/services/auth.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { AuthService } from './auth/services/auth.service';
     MatListModule,
     MatIconModule,   
     MatCardModule, 
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule.enablePersistence(), FontAwesomeModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

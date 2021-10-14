@@ -112,6 +112,12 @@ export class ConfiguratorComponent implements OnInit {
 
   
   continueToShipping() {
+
+
+    if(this.selectedPizza==null){
+
+      return alert("You must select a pizza to continue")
+    }
     this.pickedOrder = {
       PizzaType: this.pickedPizza,
       Quantity: this.quantity,
@@ -119,7 +125,9 @@ export class ConfiguratorComponent implements OnInit {
       Toppings: this.pickedToppings,
       Total:this.total,
       Shipping:<ShippingDetails>{},
-      OrderId:''
+      OrderId:'',
+      Status:'In Progress',
+      DateOfOrder:new Date()
     }
     this.dataSharingService.setOrder(this.pickedOrder);
     this.router.navigateByUrl('/order_details');

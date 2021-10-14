@@ -19,7 +19,7 @@
     <p class="topping-total">Total price +${{toppingTotal}}</p>
     <h1 class="configurator-headings">Pizza! Pizza! Pizza!</h1>
     <mat-list class="pizza-container">
-      <mat-list-item class="clickable" [ngClass]="{'selectedPizza': pizza===selectedPizza}" *ngFor='let pizza of pizzasObservable |async as pizzas'
+      <mat-list-item class="clickable" [ngClass]="{'selectedPizza': pizza===selectedPizza}" *ngFor='let pizza of pizzasObservable |async'
         (click)='setPickedPizza(pizza)'> {{pizza.Name}} </mat-list-item>
     </mat-list>
 

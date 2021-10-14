@@ -9,5 +9,7 @@ export interface Order {
     Quantity:number,
     Total:number,
     Shipping:ShippingDetails,
-    OrderId:string
+    OrderId:string,
+    Status:string,
+    DateOfOrder:Date
 }
