@@ -17,20 +17,17 @@ export class LoginComponent implements OnInit {
       { type: 'email', message: 'Valid email is required' }
     ],
     'password': [
-      { type: 'required', message: 'Email is required' },
-      { type: 'minlength', message: 'Country must be at least 5 characters long' }
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' }
     ]}
 
   constructor(public authService:AuthService) { }
   loginForm=new FormGroup({
     username:new FormControl('',{
-      validators:[Validators.required,Validators.email],
-      updateOn:'change'
-    
+      validators:[Validators.required,Validators.email]
     }),
     password:new FormControl('',{
-      validators:[Validators.required,Validators.minLength(5)],
-      updateOn:'change'
+      validators:[Validators.required,Validators.minLength(5)]
     
     }),
   });

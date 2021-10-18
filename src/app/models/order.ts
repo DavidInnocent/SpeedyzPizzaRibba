@@ -11,5 +11,6 @@ export interface Order {
     Shipping:ShippingDetails,
     OrderId:string,
     Status:string,
-    DateOfOrder:Date
+    DateOfOrder:Date,
+    UserID:string
 }

@@ -30,7 +30,7 @@
           *ngIf="loginForm.get('password').hasError(validation.type)! && (loginForm.get('password').dirty || loginForm.get('password').touched)">
           {{validation.message}}</mat-error>
       </mat-error> -->
-      <input class="password" matInput type="text" placeholder='Password' formControlName="password">
+      <input class="password" matInput type="password" placeholder='Password' formControlName="password">
       <button type="submit" matButton>Login</button>
     </form>
     <div class="forgotPassword">

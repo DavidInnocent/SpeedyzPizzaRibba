@@ -37,6 +37,7 @@ export class ConfiguratorComponent implements OnInit {
   toppingTotal=0;
   selectedTopping!: string;
   selectedToppingIndex!: number;
+  userId!:any;
   
   configuratorService: ConfiguratorService
   router!: Router;
@@ -47,6 +48,7 @@ export class ConfiguratorComponent implements OnInit {
     this.configuratorService=configuratorService;
     this.router=router;
     this.dataSharingService=dataSharingService;
+    this.userId =JSON.parse(localStorage.getItem('user')!).uid;
   }
 
   ngOnInit(): void {
@@ -127,7 +129,8 @@ export class ConfiguratorComponent implements OnInit {
       Shipping:<ShippingDetails>{},
       OrderId:'',
       Status:'In Progress',
-      DateOfOrder:new Date()
+      DateOfOrder:new Date(),
+      UserID:this.userId
     }
     this.dataSharingService.setOrder(this.pickedOrder);
     this.router.navigateByUrl('/order_details');
