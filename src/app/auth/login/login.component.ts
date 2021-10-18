@@ -23,13 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService:AuthService) { }
   loginForm=new FormGroup({
-    username:new FormControl('',{
-      validators:[Validators.required,Validators.email]
-    }),
-    password:new FormControl('',{
-      validators:[Validators.required,Validators.minLength(5)]
-    
-    }),
+    email:new FormControl('',{validators:[Validators.required,Validators.email]}),
+    password:new FormControl('',{validators:[Validators.required,Validators.minLength(5)]}),
   });
 
   ngOnInit(): void {
@@ -41,7 +36,7 @@ export class LoginComponent implements OnInit {
       alert('Email and password has to be filled in to continue.')
       return
     }
-    this.authService.SignIn(this.loginForm.controls['username'].value,this.loginForm.controls['password'].value)
+    this.authService.SignIn(this.loginForm.controls['email'].value,this.loginForm.controls['password'].value)
   }
 
 }
