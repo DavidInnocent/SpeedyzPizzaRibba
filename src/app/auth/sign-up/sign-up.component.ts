@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class SignUpComponent implements OnInit {
       { type: 'minlength', message: 'Country must be at least 5 characters long' }
     ]}
 
-  constructor(public authService:AuthService) { }
+  constructor(public authService:AuthService,public toastr: ToastrService) { }
   signUpForm=new FormGroup({
     email:new FormControl('',{
       validators:[Validators.required,Validators.email],
@@ -50,15 +51,19 @@ export class SignUpComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.authService.error$.subscribe(value=>alert(value))
+    this.authService.error$.subscribe(value=>this.showError(value))
   }
   signUp(){
     if(!this.signUpForm.valid)
     {
-      alert('Email and password has to be filled in to continue.')
+      this.showError('Valid sign up credentials required to finalize registration');
       return
     }
     this.authService.SignUp(this.signUpForm.controls['email'].value,this.signUpForm.controls['password'].value,this.signUpForm.controls['username'].value)
+  }
+
+  showError(value:string) {
+    this.toastr.error( value,'Error Encountered');
   }
 
 }

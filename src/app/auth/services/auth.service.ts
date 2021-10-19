@@ -23,7 +23,7 @@ export class AuthService {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
-      localStorage.setItem('user', '{}');
+      
       if (user) {
 
         if (user.displayName === null) {
@@ -90,10 +90,10 @@ export class AuthService {
   }
 
   SignInWithGoogle() {
-    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(error=>this.error$.next(error.message));
   }
   SignInWithFacebook() {
-    this.afAuth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    this.afAuth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).catch(error=>this.error$.next(error.message));
   }
 
   SetUserData(user: any) {

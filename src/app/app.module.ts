@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { ErrorComponent } from './shared/error/error.component';
+import { ErrorComponent } from './shared/components/error/error.component';
 import { ConfiguratorComponent } from './order/configurator/configurator.component';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
@@ -28,6 +28,8 @@ import { FormsModule,ReactiveFormsModule,Validators } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { AuthService } from './auth/services/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoadingComponent } from './shared/components/loading/loading.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OrderHistoryComponent,
     OrderDetailsComponent,
     OrderSuccessComponent,
+    LoadingComponent,
   ],
   imports: [
     MatInputModule,
@@ -62,7 +65,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatListModule,
     MatIconModule,   
     MatCardModule, 
-    AngularFirestoreModule.enablePersistence(), FontAwesomeModule,
+    AngularFirestoreModule.enablePersistence(), 
+    FontAwesomeModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

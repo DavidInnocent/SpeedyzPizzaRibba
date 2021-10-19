@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DiscountCode } from 'src/app/models/discount-code';
-import { Order } from 'src/app/models/order';
+import { ToastrService } from 'ngx-toastr';
+import { DiscountCode } from 'src/app/shared/models/discount-code';
+import { Order } from 'src/app/shared/models/order';
+
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 import { OrderDetailService } from './order-detail.service';
 
@@ -45,7 +47,7 @@ export class OrderDetailsComponent implements OnInit {
   disableDiscount=false;
   total!: number;
   discountText='Discount code'
-  constructor(public dataService: DataSharingService,public router:Router,public orderService:OrderDetailService) {
+  constructor(public dataService: DataSharingService,public router:Router,public orderService:OrderDetailService,public toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -78,7 +80,7 @@ export class OrderDetailsComponent implements OnInit {
   finishOrderingPizza(){
     if(!this.shippingForm.valid)
     {
-      alert('All shipping fields have to be filled to continue.')
+      this.showError('All shipping fields have to be filled to continue.')
       return
     }
    this.order.Total=this.total;
@@ -91,5 +93,12 @@ export class OrderDetailsComponent implements OnInit {
     this.orderService.saveOrder(this.order);
     this.router.navigateByUrl('/order_success');
   }
+
+  
+  
+  showError(value:string) {
+    this.toastr.error( value,'Error Encountered');
+  }
+
 
 }

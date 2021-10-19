@@ -6,7 +6,7 @@ import { ConfiguratorComponent } from './order/configurator/configurator.compone
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { OrderSuccessComponent } from './order/order-success/order-success.component';
-import { ErrorComponent } from './shared/error/error.component';
+import { ErrorComponent } from './shared/components/error/error.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [

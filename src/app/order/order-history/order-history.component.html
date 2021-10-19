@@ -1,3 +1,6 @@
+<app-loading *ngIf="loadingSpinner;else displayContent"></app-loading>
+<ng-template 
+#displayContent>
 <h1 class="heading">Your Order History</h1>
 <mat-card *ngFor="let order of orderService.orders$ |async">
 
@@ -47,3 +50,9 @@
     </div>
   </div>
 </mat-card>
+
+</ng-template>
+
+
+
+

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DiscountCode } from 'src/app/models/discount-code';
-import { Order } from 'src/app/models/order';
-import { Pizza } from 'src/app/models/pizza';
-import { Topping } from 'src/app/models/topping';
+import { DiscountCode } from 'src/app/shared/models/discount-code';
+
 import { ConfiguratorService } from './configurator.service';
 import { Router } from '@angular/router';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
-import { ShippingDetails } from 'src/app/models/shipping-details';
+import { Order } from 'src/app/shared/models/order';
+import { Pizza } from 'src/app/shared/models/pizza';
+import { ShippingDetails } from 'src/app/shared/models/shipping-details';
+import { Topping } from 'src/app/shared/models/topping';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-configurator',
@@ -18,6 +21,7 @@ export class ConfiguratorComponent implements OnInit {
 
 
   discounts = new Array<DiscountCode>();
+  loadingSpinner=true;
 
   pizzasObservable = new Observable<Pizza[]>();
   toppingsObservable = new Observable<Topping[]>();
@@ -44,7 +48,7 @@ export class ConfiguratorComponent implements OnInit {
   dataSharingService: DataSharingService;
   selectedPizza!: Pizza;
 
-  constructor(configuratorService: ConfiguratorService,router: Router,dataSharingService:DataSharingService) {
+  constructor(configuratorService: ConfiguratorService,router: Router,dataSharingService:DataSharingService,public toastr: ToastrService) {
     this.configuratorService=configuratorService;
     this.router=router;
     this.dataSharingService=dataSharingService;
@@ -55,6 +59,7 @@ export class ConfiguratorComponent implements OnInit {
     this.pizzasObservable=this.configuratorService.pizzas;
     this.toppingsObservable=this.configuratorService.toppings;
     this.discountsObservable=this.configuratorService.discounts;
+    this.configuratorService.toppings.subscribe(()=>this.loadingSpinner=false)
     this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
     this.dataSharingService.disounts$=this.discountsObservable;
   }
@@ -118,7 +123,7 @@ export class ConfiguratorComponent implements OnInit {
 
     if(this.selectedPizza==null){
 
-      return alert("You must select a pizza to continue")
+      return this.showError("You must select a pizza to continue")
     }
     this.pickedOrder = {
       PizzaType: this.pickedPizza,
@@ -135,6 +140,12 @@ export class ConfiguratorComponent implements OnInit {
     this.dataSharingService.setOrder(this.pickedOrder);
     this.router.navigateByUrl('/order_details');
 
+  }
+
+  
+  
+  showError(value:string) {
+    this.toastr.error( value,'Error Encountered');
   }
 
 }

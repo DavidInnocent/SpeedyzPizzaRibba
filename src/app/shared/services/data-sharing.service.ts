@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { DiscountCode } from 'src/app/models/discount-code';
-import { Order } from 'src/app/models/order';
+import { DiscountCode } from 'src/app/shared/models/discount-code';
+import { Order } from '../models/order';
+
 
 @Injectable({
   providedIn: 'root'

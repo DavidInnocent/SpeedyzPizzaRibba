@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {  Observable, of } from 'rxjs';
-import { Order } from 'src/app/models/order';
+import { Order } from 'src/app/shared/models/order';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({

@@ -1,57 +1,62 @@
 <div>
   <div [routerLink]="['/order_history']" class="orderDetails-container" ><p>Order History</p></div>
-  <h1 class="configurator-headings">Toppings! Toppings!</h1>
-  <mat-list class="topping-container">
-    <mat-list-item class="clickable topping" [ngClass]="{'selected': pickedToppings.indexOf(topping)!==-1}"
-      *ngFor='let topping of toppingsObservable |async' (click)='setPickedToppings(topping)'>
-     
-     <mat-list class="topping-inner-container">
-       <mat-list-item class="image-div">
-        <img [src]='topping.ImageUrl' alt="">
-       </mat-list-item>
-       <mat-list-item>
-        <p>{{topping.Name}}</p>
-       </mat-list-item>
-     </mat-list>
-    </mat-list-item>
-  </mat-list>
-  <div class="pizza-and-discount-container">
-    <p class="topping-total">Total price +${{toppingTotal}}</p>
-    <h1 class="configurator-headings">Pizza! Pizza! Pizza!</h1>
-    <mat-list class="pizza-container">
-      <mat-list-item class="clickable" [ngClass]="{'selectedPizza': pizza===selectedPizza}" *ngFor='let pizza of pizzasObservable |async'
-        (click)='setPickedPizza(pizza)'> {{pizza.Name}} </mat-list-item>
+  <app-loading *ngIf="loadingSpinner;else showcontent"></app-loading>
+  
+
+  <ng-template #showcontent>
+    <h1 class="configurator-headings">Toppings! Toppings!</h1>
+    <mat-list class="topping-container">
+      <mat-list-item class="clickable topping" [ngClass]="{'selected': pickedToppings.indexOf(topping)!==-1}"
+        *ngFor='let topping of toppingsObservable |async' (click)='setPickedToppings(topping)'>
+       <mat-list class="topping-inner-container">
+         <mat-list-item class="image-div">
+          <img [src]='topping.ImageUrl' alt="">
+         </mat-list-item>
+         <mat-list-item>
+          <p>{{topping.Name}}</p>
+         </mat-list-item>
+       </mat-list>
+      </mat-list-item>
     </mat-list>
-
-    <h1 class="configurator-headings">Get the discount!</h1>
-    <p *ngIf="error">{{error}}</p>
-    <div class="discount-container">
-      
-      <input class="clickable" [disabled]='this.disableDiscount' matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
-      <button class="clickable" [disabled]='this.disableDiscount' matButton (click)="applyDiscount()">Apply Code</button>
-
-    </div>
-  </div>
-
-  <div class="bottom-container">
-    <div class="left-bottom">
-      <img src="./../../../assets/images/PizzaSuccess.png" alt="Pizza image">
-    </div>
-
-    <div class="right-bottom">
- 
-      <div class="flex-container">
-        <input class="clickable quantityInput" matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
-        <span>QTY</span>
-      </div>
-      <div class="flex-container withBorder">
-        <h1>${{total}}</h1>
-        <span>ORDER TOTAL</span>
-      </div>
-      
-        <button class="clickable" matButton (click)="continueToShipping()">Buy Pizza! Pizza!</button>
+    <div class="pizza-and-discount-container">
+      <p class="topping-total">Total price +${{toppingTotal}}</p>
+      <h1 class="configurator-headings">Pizza! Pizza! Pizza!</h1>
+      <mat-list class="pizza-container">
+        <mat-list-item class="clickable" [ngClass]="{'selectedPizza': pizza===selectedPizza}" *ngFor='let pizza of pizzasObservable |async'
+          (click)='setPickedPizza(pizza)'> {{pizza.Name}} </mat-list-item>
+      </mat-list>
+  
+      <h1 class="configurator-headings">Get the discount!</h1>
+      <p *ngIf="error">{{error}}</p>
+      <div class="discount-container">
         
+        <input class="clickable" [disabled]='this.disableDiscount' matInput type="text" placeholder="Enter discount code" [(ngModel)]="discountCode">
+        <button class="clickable" [disabled]='this.disableDiscount' matButton (click)="applyDiscount()">Apply Code</button>
+  
+      </div>
     </div>
+  
+    <div class="bottom-container">
+      <div class="left-bottom">
+        <img src="./../../../assets/images/PizzaSuccess.png" alt="Pizza image">
+      </div>
+  
+      <div class="right-bottom">
    
-  </div>
+        <div class="flex-container">
+          <input class="clickable quantityInput" matInput type="number" (input)="onSearchChange($event)" [(ngModel)]="quantity">
+          <span>QTY</span>
+        </div>
+        <div class="flex-container withBorder">
+          <h1>${{total}}</h1>
+          <span>ORDER TOTAL</span>
+        </div>
+        
+          <button class="clickable" matButton (click)="continueToShipping()">Buy Pizza! Pizza!</button>
+          
+      </div>
+     
+    </div>
+  </ng-template>
+  
  </div>
