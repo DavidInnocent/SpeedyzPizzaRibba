@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { DiscountCode } from 'src/app/shared/models/discount-code';
 import { Order } from 'src/app/shared/models/order';
 
@@ -13,7 +14,7 @@ import { OrderDetailService } from './order-detail.service';
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
   orderPlaced!:Order
   validation_messages = {
     'address': [
@@ -47,13 +48,17 @@ export class OrderDetailsComponent implements OnInit {
   disableDiscount=false;
   total!: number;
   discountText='Discount code'
+  discountSubscription!: Subscription;
   constructor(public dataService: DataSharingService,public router:Router,public orderService:OrderDetailService,public toastr: ToastrService) {
+  }
+  ngOnDestroy(): void {
+    if(this.discountSubscription)this.discountSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
     this.order = this.dataService.getOrder();
     this.total=this.order.Total;
-    this.dataService.disounts$.subscribe(discounts=>this.discounts=discounts);
+    this.discountSubscription=this.dataService.disounts$.subscribe(discounts=>this.discounts=discounts);
     this.orderToppings=this.order.Toppings.map(topping=>topping.Name).join();
     if(this.order.DiscountApplied!==0){
       this.disableDiscount=true;

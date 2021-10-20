@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { faGoogle,faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  loginSubscription!:Subscription
   faGoogle = faGoogle;
   faFacebook = faFacebook;
   validation_messages = {
@@ -23,13 +25,16 @@ export class LoginComponent implements OnInit {
     ]}
 
   constructor(public authService:AuthService,public toastr: ToastrService) { }
+  ngOnDestroy(): void {
+    if(this.loginSubscription)this.loginSubscription.unsubscribe();
+  }
   loginForm=new FormGroup({
     email:new FormControl('',{validators:[Validators.required,Validators.email]}),
     password:new FormControl('',{validators:[Validators.required,Validators.minLength(5)]}),
   });
 
   ngOnInit(): void {
-    this.authService.error$.subscribe(value=>this.showError(value))
+    this.loginSubscription=this.authService.error$.subscribe(value=>this.showError(value))
   }
   login(){
     

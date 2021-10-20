@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { DiscountCode } from 'src/app/shared/models/discount-code';
 
 import { ConfiguratorService } from './configurator.service';
@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './configurator.component.html',
   styleUrls: ['./configurator.component.scss']
 })
-export class ConfiguratorComponent implements OnInit {
+export class ConfiguratorComponent implements OnInit, OnDestroy {
 
 
   discounts = new Array<DiscountCode>();
@@ -26,6 +26,9 @@ export class ConfiguratorComponent implements OnInit {
   pizzasObservable = new Observable<Pizza[]>();
   toppingsObservable = new Observable<Topping[]>();
   discountsObservable = new Observable<DiscountCode[]>();
+
+  toppingsSubcription!:Subscription  
+  discountsSubcription!:Subscription
 
   pickedToppings = new Array<Topping>();
   pickedPizza!: Pizza;
@@ -54,13 +57,17 @@ export class ConfiguratorComponent implements OnInit {
     this.dataSharingService=dataSharingService;
     this.userId =JSON.parse(localStorage.getItem('user')!).uid;
   }
+  ngOnDestroy(): void {
+    if(this.toppingsSubcription)this.toppingsSubcription.unsubscribe();
+    if(this.discountsSubcription)this.discountsSubcription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.pizzasObservable=this.configuratorService.pizzas;
     this.toppingsObservable=this.configuratorService.toppings;
     this.discountsObservable=this.configuratorService.discounts;
-    this.configuratorService.toppings.subscribe(()=>this.loadingSpinner=false)
-    this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
+    this.toppingsSubcription=this.configuratorService.toppings.subscribe(()=>this.loadingSpinner=false)
+    this.discountsSubcription=this.discountsObservable.subscribe((discountsReturned:DiscountCode[]) => this.discounts = discountsReturned);
     this.dataSharingService.disounts$=this.discountsObservable;
   }
 

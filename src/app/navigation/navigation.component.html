@@ -1,6 +1,6 @@
 <div class="flex-container">
-        <p class="logo">Pizz-á-tron</p>
-        <img src="./../../assets/images/🍕.svg" alt="">
+        <p routerLink='/configurator' class="logo">Pizz-á-tron</p>
+        <img routerLink='/configurator' src="./../../assets/images/🍕.svg" alt="">
         <input (click)="authService.SignOut()" [hidden]="authService.enableLogout$ | async" type="button" value="Logout">
 
 </div>

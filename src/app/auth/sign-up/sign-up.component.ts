@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
 
   // registrationForm=new FormGroup({
   //   username:new FormControl('',[Validators.required,Validators.minLength(5)]),
@@ -30,8 +31,12 @@ export class SignUpComponent implements OnInit {
       { type: 'required', message: 'Email is required' },
       { type: 'minlength', message: 'Country must be at least 5 characters long' }
     ]}
+  signUpSubscription!: Subscription;
 
   constructor(public authService:AuthService,public toastr: ToastrService) { }
+  ngOnDestroy(): void {
+    if(this.signUpSubscription)this.signUpSubscription.unsubscribe();
+  }
   signUpForm=new FormGroup({
     email:new FormControl('',{
       validators:[Validators.required,Validators.email],
@@ -51,7 +56,7 @@ export class SignUpComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.authService.error$.subscribe(value=>this.showError(value))
+    this.signUpSubscription=this.authService.error$.subscribe(value=>this.showError(value))
   }
   signUp(){
     if(!this.signUpForm.valid)
