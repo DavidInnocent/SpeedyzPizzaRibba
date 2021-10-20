@@ -96,6 +96,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
       Country:this.shippingForm.controls['country'].value
     }
     this.orderService.saveOrder(this.order);
+    this.toastr.success( 'Your order sent successfully','Error Encountered');
     this.router.navigateByUrl('/order_success');
   }
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { User } from 'src/app/shared/models/user';
 export class AuthService {
   enableLogout$ = new BehaviorSubject<boolean>(false);
   error$ = new Subject<string>();
+  loggedInUser$ = new Subject<any>();
   username = ''
 
   constructor(
@@ -26,7 +28,7 @@ export class AuthService {
       
       if (user) {
 
-        if (user.displayName === null) {
+        if (user.displayName === null&&this.username!==null) {
           user.updateProfile(
             {
               displayName: this.username
@@ -56,6 +58,7 @@ export class AuthService {
     this.SetUserData(user);
     this.router.navigateByUrl('configurator');
     this.enableLogout$.next(false);
+    this.loggedInUser$.next(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
   get isLoggedIn(): boolean {
@@ -98,7 +101,7 @@ export class AuthService {
 
   SetUserData(user: any) {
 
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`Users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`${environment.USERS}/${user.uid}`);
     const userData: User = {
       uid: user.uid,
       email: user.email,

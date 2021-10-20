@@ -1,4 +1,5 @@
 export interface Pizza {
   Name: string,
-  Price: number
+  Price: number,
+  ImageUrl:string
 }

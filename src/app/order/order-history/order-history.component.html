@@ -1,55 +1,70 @@
 <app-loading *ngIf="loadingSpinner;else displayContent"></app-loading>
+
 <ng-template 
 #displayContent>
-<h1 class="heading">Your Order History</h1>
-<mat-card *ngFor="let order of orderService.orders$ |async">
+<h1 class="heading" *ngIf="sizeOfOrders!==0">Your Order History</h1>
+<div *ngIf="sizeOfOrders===0;else returnedOrders">
 
-  <div class="details-container">
-    <div class="left-panel">
-      <div class="top">
-        <img [src]='order.PizzaType.ImageUrl' alt="">
-      </div>
-      <div class="bottom">
-        <div class="total">
-          <p>SubTotal</p>
-          <h1>${{order.Total}}</h1>
-        </div>
-        <div class="discount">
-          <p>Discount</p>
-          <h1>${{order.DiscountApplied}}</h1>
-        </div>
-        <div class="grand-total">
-          <p>Grand total:</p>
-          <h1>${{order.Total-order.DiscountApplied}}</h1>
-        </div>
-      </div>
-    </div>
-    <div class="right-panel">
-
-      <div class="top">
-        <h1> <span>{{order.Quantity}}</span>x {{order.PizzaType.Name}}</h1>
-
-      </div>
-      <mat-list>
-        <mat-list-item *ngFor="let topping of order.Toppings">
-            <div class="topping">
-              <img [src]='topping.ImageUrl' alt="">
-              <p>{{topping.Name}}</p>
-            </div>
-          </mat-list-item>
-      </mat-list>
-      <div class="shipping-details">
-        <h1>Shipping details</h1>
-        <p>Streat Address: <span>{{order.Shipping.StreetNameAndNumber}}</span></p>
-        
-        <p>City: <span>{{order.Shipping.City}}</span></p>
-        <p>Country: <span>{{order.Shipping.Country}}</span></p>
-        <p>Postal Code: <span>{{order.Shipping.PostalCode}}</span></p>
-      </div>
-      <button type="submit" (click)='ReOrder(order)' >Reorder</button>
-    </div>
+  <div class="no-orders">
+    <img src="https://res.cloudinary.com/ximmoz-corp/image/upload/v1634732500/prototyp/pizza.jpg" alt="No Pizza found">
+    <h1>OOPS!</h1>
+    <p>You haven't placed any orders yet!</p>
+    <button routerLink='/configurator'>Order Now</button>
   </div>
-</mat-card>
+</div>
+<ng-template #returnedOrders >
+  <mat-card *ngFor="let order of orderDetails |async">
+
+    <div class="details-container">
+      <div class="left-panel">
+        <div class="top">
+          <img [src]='order.PizzaType.ImageUrl' alt="">
+        </div>
+        <div class="bottom">
+          <div class="total">
+            <p>SubTotal</p>
+            <h1>${{order.Total}}</h1>
+          </div>
+          <div class="discount">
+            <p>Discount</p>
+            <h1>${{order.DiscountApplied}}</h1>
+          </div>
+          <div class="grand-total">
+            <p>Grand total:</p>
+            <h1>${{order.Total-order.DiscountApplied}}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+  
+        <div class="top">
+          <h1> <span>{{order.Quantity}}</span>x {{order.PizzaType.Name}}</h1>
+  
+        </div>
+        <mat-list>
+          <mat-list-item *ngFor="let topping of order.Toppings">
+              <div class="topping">
+                <img [src]='topping.ImageUrl' alt="">
+                <p>{{topping.Name}}</p>
+              </div>
+            </mat-list-item>
+        </mat-list>
+        <div class="shipping-details">
+          <h1>Shipping details</h1>
+          <p>Streat Address: <span>{{order.Shipping.StreetNameAndNumber}}</span></p>
+          
+          <p>City: <span>{{order.Shipping.City}}</span></p>
+          <p>Country: <span>{{order.Shipping.Country}}</span></p>
+          <p>Postal Code: <span>{{order.Shipping.PostalCode}}</span></p>
+        </div>
+        <button type="submit" (click)='ReOrder(order)' >Reorder</button>
+      </div>
+    </div>
+  </mat-card>
+  
+</ng-template>
+
+
 
 </ng-template>
 

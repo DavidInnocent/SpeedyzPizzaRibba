@@ -58,6 +58,10 @@
             border: none;
             background: linear-gradient(93.49deg, #000000 4.76%, #C697E9 98.36%);
             border-radius: 36px;
+            transition: 0.3s;
+        &:hover{
+          box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+        }
         }
     }
     form {
@@ -93,6 +97,10 @@
         border: none;
         background: linear-gradient(93.49deg, #B95DE4 4.76%, #C697E9 98.36%);
         border-radius: 36px;
+        transition: 0.3s;
+        &:hover{
+          box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+        }
       }
     }
     .signUp{

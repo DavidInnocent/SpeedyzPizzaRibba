@@ -7,9 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OrderHistoryService {
-  orders$: Observable<any[]>;
+    constructor(public firestore: AngularFirestore) {
+    // this.orders$ = firestore.collection(environment.ORDERS).ref.where("UserID","==","f1rJZ4HniPdA60gBHZCKyWo0vBw1").valueChanges();
+    const user = JSON.parse(localStorage.getItem('user')!);
+    console.log("User returned", user.uid)
 
-  constructor(firestore: AngularFirestore) {
-    this.orders$ = firestore.collection(environment.ORDERS).valueChanges();
-    
-  }}
+
+  }
+
+  getUserOrders(userID:string):Observable<any>{
+    return this.firestore.collection(environment.ORDERS, ref => ref.where('UserID', '==', userID)).valueChanges();
+  }
+}
