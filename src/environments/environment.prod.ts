@@ -15,6 +15,4 @@ export const environment = {
   DISCOUNTS:"DiscountCodes",
   ORDERS:"Orders",
   USERS:"Users"
-
-
 };
